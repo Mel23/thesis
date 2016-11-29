@@ -1,12 +1,14 @@
 
+
+
 % CHAPTER:  1
 % (Note: cannot have a footnote on a word within the \chapter{} construct, it does not work)
 \input{macros.tex}
 \chapter{Using FERENGI to correct \ffeatures{} for redshift-induced classification bias}
 \label{chap:ferengi}
 
-\subsection{Intro}
-\label{ssec:ferengi_Intro}
+\section{Intro}
+\label{sec:ferengi_Intro}
 %% motivate importance of f_features in selecting morphological samples for population studies, and introduce the bias induced in the measurement as a function of redshift 
 
 The GZ vote fraction \ffeatures{} plays a crucial role in the majority of science cases that use Galaxy Zoo classifications. It represents the fraction of users who answered ``feature or disk'' to the first question in the decision tree, and is used to distinguish elliptical/spheroidal galaxies from those with features. Many studies aim to measure the popluation of galaxies exhibiting certain features such as bars (examples), spiral arms (examples), [dump stuff in this list]. In each of these, \ffeatures{} is necessary for creating the sample of galaxies which could potentially contain the feature in question. This is typically acheived by setting a cut, such that all galaxies with \ffeatures{} greater than that threshold are considered to be candidates for that study.
@@ -19,15 +21,50 @@ A method for correcting redshift bias in the GZ vote fractions was developed and
 
 In GZH, the redshift range is large enough that cosmological evolution of the morphologies of galaxies is expected, and therefore the previous method of correcting redshift-bias will not work. Instead, we have developed a new method of measuring the change in \ffeatures{} as a function of redshift using a set of simulated \ferengi{} images of galaxies, described in the next section. These images have been classified by volunteers in Galaxy Zoo in the same way as the GZH sample. This chapter will describe how we measure a correction factor for \ffeatures{} using these data as a function of redshift at fixed surface brightness, and apply the correction to the GZH sample. 
 
+\subsection{The FERENGI code}
+\label{sec:ferengicode}
+Describe details of how code articially redshifts images, inputs and outputs, how psf is handled, limitations, handling of surface brightness dimming and k corrections, etc \citep{Barden2008}
 
-\subsection{The FERENGI sample}
+\section{The FERENGI sample}
+\label{sec:ferengi1sample}
 
-\subsection{Measuring the drop in \ffeatures{} as a function of $z$ and $\mu$ using FERENGI data}
-\subsubsection{Identifying ``correctable'' and ``lower limit'' samples.}
+To generate an artificially redshifted sample of galaxies to be used in debiasing the Galaxy Zoo: Hubble catalog, a source sample was generated \footnote{The source sample for FERENGI was created by the Galaxy Zoo science team in 2012.}consisting of 288 galaxies from SDSS, all of which were previously classified in GZ2. These galaxies were chosen to span a wide range of morphologies, surface brightnesses, and redshifts. Seven morphological classes were considered: spiral galaxies, edge-on disks without a bulge, edge-on disks with a bulge, face-on disks with a bulge, galaxies with any features, galaxies undergoing mergers, and barred galaxies. For each of these categories, galaxies were chosen with from three ``strength'' bins, defined using the GZ2 vote fractions. Weak strengths were defined as having $f_{class}<0.2$, intermediate as $0.2<f_{class}<0.8$, and strong as $f_{class}>0.8$. In each strength bin, galaxies were also chosen to represent three different surface brightnesses: $\mu_{r}>21.5$, $20.5<\mu_{r}<21.5$, and $\mu_{r}<20.5$. Finally, from each morphological class, strength, and surface brightness bin, one galaxy was chosen for four redshift bins: $z<0.013$, $0.013<z<0.02$, $0.02<z<0.025$, and $z>0.025$, with the exception of the bar class, in which two galaxies were chosen for each redshift bin, doubling the sample size for that class.
+
+
+The 288 SDSS galaxies were processed with the \ferengi{} code to mimic \hst~ imaging parameters \footnote{This work was done by Edmond Cheung, a Galaxy Zoo science team member.}, in order to ultimately measure and correct any redshift-dependant biases in the classifications of the real \hst~ images. I-814 and V-606 images, chosen to match the \hst~ ACS AEGIS imaging, were output for each subject at a range of redshifts and with a range of applied evolution factors. The range of simulated redshifts possible for any galaxy is dependent on the intrinsic redshift and size of the source galaxy, since the simulated images cannot be resampled at better angular resolution than the original SDSS data. This imposes a minimum simulated ``target'' redshift that can be achieved for each galaxy. For the lowest redshift bin in the source sample ($z<0.013$), galaxies could be redshifted the full range of $0.3<z<1.0$, in increments of $dz=0.1$. For the second lowest redshift bin, galaxies could only be redshifted in the range $0.5<z<1.0$, for the third, galaxies could be redshifted in the range $0.8<z<1.0$, and for the highest redshift bin, galaxies were only redshifted in \ferengi{} to $z=1.0$. Only galaxies which were redshifted the full range were considered in the debiasing procedure outlined in the next section~ (\ref{ssec:correctablesamples}), because the method calibrates galaxies to a low redshift of $z=0.3$, data for which is not available for galaxies in the remaining three redshift bins. Last, for each simulated redshift, a range of evolution factors was applied from $0<e<3$ in increments of $de=0.5$. 
+
+The final \ferengi{} sample totals 6,624 simulated images which were classified as part of GZ4, using the same decision tree as used in GZH. The debiasing technique described next (Section~\ref{sec:ferengidebiasing}) used only the 4,446 images corresponding to the 72 galaxies which were redshifted the full $0.3<z<1.0$ range. Because the debiasing method takes into account surface brightness as a parameter, photometry was measured for all images using \sextractor{} \footnote{\sextractor{} measurements for the original \ferengi{} sample were done by Tom Melvin, a former Galaxy Zoo science team member.}. The mean surface brighness $\mu$ within effective radius ($R_{e}$) was calculated as:
+
+\begin{equation}
+\label{eqn:mu}
+\mu = m + 2.5*\log_{10}{(2 \times (b/a) \times \pi R_e^2 )}
+\end{equation}
+
+where $m$ is {\tt MAG\_AUTO} in the \Iband{} band, $(b/a)$ is the galaxy
+ellipticity (the profile RMS along the semi-major and -minor axes), and $R_e$
+is the 50\% {\tt FLUX\_RADIUS} converted into arcsec.
+
+
+ 
+
+% Figure - ferengi1 examples
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{figures/example_ferengi.pdf}
+\caption{Examples of two SDSS galaxies which have been run through the \ferengi{} code to produce simulated \hst~images. The measured value of \ffeatures{} from GZH for the images in each panel are (1) Top row: \ffeatures{} = (0.900, 0.625, 0.350, 0.350, 0.225) and (2) Bottom row: \ffeatures{} = (1.000, 0.875, 0.875, 0.625, 0.375).}
+\label{fig:ferengi1_examples}
+\end{figure}
+
+
+
+\section{Measuring the drop in \ffeatures{} as a function of $z$ and $\mu$ using FERENGI data}
+\label{sec:ferengidebiasing}
+\subsection{Identifying ``correctable'' and ``lower limit'' samples.}
+\label{ssec:correctablesamples}
 
 The objective is to use the simulated data from \ferengi{} to predict, for a galaxy imaged at a redshift $z$, and with a measured \ffeaturesz{} value, what its \ffeatures{} value \emph{would have been} if it had been viewed at $z=0.3$. This predicted value is defined as the ``debiased' vote fraction \ffeaturesdebiased, and is calculated by applying a correction to the measured value of \ffeatures.
 
-The amount that a galaxy's \ffeatures{} vote fraction must be corrected is assumed to primarily depend on the apparent size and brightness of the galaxy. As described in \ref{ssec:ferengi_Intro}, these factors will affect the overall clarity of the image viewed by the GZ volunteers, which in turn affects the likelihood of being able to identify distinct feature. The apparent size and brightness are controlled by both instrinsic parameters (absolute size and luminosity), and extrinsic (distance to the galaxy). The change in \ffeatures{} then is measured as a function of redshift ($z$, an extrinsic freature, measuring distance to the galaxy), and surface brightness ($\mu$, an intrinsic feature, taking into account both brightness and size).   
+The amount that a galaxy's \ffeatures{} vote fraction must be corrected is assumed to primarily depend on the apparent size and brightness of the galaxy. As described in \ref{sec:ferengi_Intro}, these factors will affect the overall clarity of the image viewed by the GZ volunteers, which in turn affects the likelihood of being able to identify distinct feature. The apparent size and brightness are controlled by both instrinsic parameters (absolute size and luminosity), and extrinsic (distance to the galaxy). The change in \ffeatures{} then is measured as a function of redshift ($z$, an extrinsic freature, measuring distance to the galaxy), and surface brightness ($\mu$, an intrinsic feature, taking into account both brightness and size).   
 
 Figure~\ref{fig:f_vs_f} shows the change in \ffeatures{} for \ferengi{} galaxies in bins of redshift and surface brightness. Points in each $z,\mu$ represent individual \ferengi{} galaxies. On the x-axis of each bin is the value of \ffeatures{} measured in that galaxy's $z=0.3$ image (the lowest redshift of the simulated images). On the y-axis of each bin is the value of \ffeatures{} measured in that galaxy's $z=z$ image, where $z$ corresponds to the redshift associated with that bin. As predicted, the value of \ffeatures{} measured at a higher redshift, $z$, is, in general, \emph{lower} than the value measured at lower redshift, $z=0.3$, \emph{for the same galaxy}. This effect is strongest as redshift increases (to the right in Figure~\ref{fig:f_vs_f}) and as surface brightness decreases (upwards in Figure ~\ref{fig:f_vs_f}). 
 
@@ -105,7 +142,7 @@ total                              &                 & 8,507   & 84,954 & 9,087 
 
 For the ``lower limit'' galaxies, since a single debiased \ffeatures{} value cannot be confidentely assigned, a \emph{range} of debiased values is estimated. In each $z,\mu$ bin in Figure~\ref{fig:f_vs_f}, the spread of intrinsic values of \ffeaturesrest{} for five quantiles of observed \ffeatures{} is computed - these are denoted by the gray lines in the close-up Figure~\ref{fig:f_vs_f_zoom}. The range of intrinsic values of \ffeatures{} is defined by the upper and lower 1 $\sigma$ limits, enclosing the inner 68\% of the data; this is represented by the orange bars in Figure~\ref{fig:f_vs_f_zoom}. For any galaxy which cannot be directly debiased, these ranges are used to denote the upper and lower limits on the expected values \ffeaturesrest{} as a function of the observed \ffeatures{}. 
 
-\subsubsection{Computing debiased \ffeatures{} for the ``correctable'' sample using the $\zeta$ equation}
+\subsection{Computing debiased \ffeatures{} for the ``correctable'' sample using the $\zeta$ equation}
 
 For the ``correctable'' sample of simulated \ferengi{} galaxies, an equation is derived to model the dropoff in \ffeatures{} with redshift for each galaxy. Such a model is assumed to have the following criteria: (1) For a given galaxy, \ffeatures{} should decrease relative to its \ffeaturesrest{} as redshift increases. (2) The corrected \ffeatures{} value must be contained within 0 and 1, since it is a fraction. (3) The degree of dropoff may depend on the surface brightness of the galaxy. Given these three assumptions, a simple exponential function was derived:
 
@@ -148,7 +185,7 @@ where $\hat\zeta$ is the correction factor applied to each galaxy. Figure~\ref{f
 
 \begin{figure}
 \center
-\includegraphics[width=0.5\textwidth]{figures/zeta_mu.pdf}
+\includegraphics[width=0.6\textwidth]{figures/zeta_mu.pdf}
 \caption{All fits for the \ferengi{} galaxies of the vote fraction dropoff
 parameter $\zeta$ for \ffeatures{} as a function of surface brightness. This
 includes only the simulated galaxies with a bounded range on the dropoff
@@ -170,7 +207,7 @@ between $f_{\rm features,weighted}$ and 1.
 
 
 
-\subsubsection{Results and the NEI sample: limitations of the \ferengi{} simulated data}
+\subsection{Results and the NEI sample: limitations of the \ferengi{} simulated data}
 
 
 \begin{itemize}
@@ -180,13 +217,10 @@ between $f_{\rm features,weighted}$ and 1.
 \item discuss limits shown in~\ref{fig:correctable_fraction}
 \end{itemize}
 
-
-
-
 %Figure: showing correctable sample in  redshift/ffeatures space 
 \begin{figure}
 \center
-\includegraphics[width=0.5\textwidth]{figures/correctable_fraction.pdf}
+\includegraphics[width=0.6\textwidth]{figures/correctable_fraction.pdf}
 \caption{Histogram showing the fraction of galaxies that have a finite correction
 for the debiased vote fractions \ffeaturesdebiased{} as a function of \ffeatures{}
 and redshift. The parameter space for corrections is limited to $0.3 \leq z \leq 1.0$
@@ -198,7 +232,7 @@ due to the sampling of the parent SDSS galaxies and detectability in the \fereng
 %Figure: compare z/mu distribution of hubble and ferengi sample
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.5\textwidth]{figures/eye_of_sauron.pdf}
+\includegraphics[width=0.6\textwidth]{figures/eye_of_sauron.pdf}
 \caption{Surface brightness as a function of redshift for 3,449~\ferengi{}
 images and the 102,548~\main{} galaxies with measured $\mu$ and $z$ values. The
 colour histogram shows the number of \ferengi{} images as a function of $\mu$
@@ -208,3 +242,55 @@ intervals of 1500.}
 \label{fig:eye_of_sauron}
 \end{center}
 \end{figure}
+
+\section{Ferengi 2: using simulated images to measure incompleteness in disk fraction as a function of redshift and surface brightness}
+
+In the previous section I described how we used the simulted \ferengi{} images to measure the redshift/surface brightness dependence on \ffeatures, and applied the measurements towards a correction factor to the vote fractions directly. In this section I will describe the motivation, selection, and application of a second set of \ferengi{} images used to measure and correct for the incompleteness in \emph{number} of disks detected as a function of redshift and surface brightness, used in the work described in Chapter~\ref{chap:gzh_red_disks}.
+
+\subsection{The Ferengi 2 Sample}
+
+The creation of a second set of \ferengi{} images was motivated by the scientific goal of measuring the redshift evolution of the fraction of red disk galaxies using the Galaxy Zoo: Hubble dataset. This project is described in full in Chapter~\ref{chap:gzh_red_disks}, but the reasons requiring a new set of simulated images will be described briefly here. First, as described in the previous section, the analysis of the first \ferengi{} set revealed that, for a large area of z-$\mu$ parameter space, galaxies with low measured values of \ffeatures{} could not be corrected to a point that could clearly distingush them as disks with washed-out features or ellipticals. Due to this limitation, any measurement of the number of disk galaxies in a given redshift interval can only be reported as a \emph{lower-limit} to the true value. The difference in the measured lower-limit and the true number of disks is what we will refer to as the \emph{incompleteness} in number of disks detected. 
+
+It is possible, then, to use the \ferengi{} images to measure this incompleteness by measuring the number of disks detected at a given redshift, and comparing to the number of disks detected out of the same galaxies at the lowest redshift (this would be considred the true, or intrinsic, number of disks.) The details of this approach will be described in the next section. A complication specific to this project is that the number of disks will be ultimitely used to compute the \emph{red disk fraction}, that is, the ratio of the number of red disks to all disks, as a function of redshift. It is then necessary to measure the level of incompleteness for both red and blue galaxies separately, to calculate this fraction most accurately.
+
+The color separation method for the \hst~galaxies in Chapter~\ref{chap:gzh_red_disks} uses NUV, r, and J magnitudes. To separate the \ferengi{} sample of galaxies into red and blue samples in the same way, these magnitudes are required. In the first set, however, only 44 of the 288 galaxies had these data available, which were not enough to properly measure any incompleteness, especially after binning the data further in surface brightness and redshift. So, a larger set of galaxies to be artificially redshifted, all which had the aforementioned data necessary to separate by color, was required.
+
+This set of new galaxies to be put through the \ferengi{} code, hereafter refered to as the \ferengi{} 2 sample, was selected as follows: All candidates were pulled from a parent sample of all SDSS galaxies which had previously been classified in GZ2. As discussed in Section~\ref{sec:ferengi1sample}, only galaxies with redshifts below $z<0.013$ were able to be redshifted the full simulated redshift range $0.3<z<1.0$, so a redshift cut was implemented of $z<0.013$. These galaxies were cross-matched with catalogs from GALEX \citep{Martin2005} for NUV magnitudes and 2MASS \citep{Skrutskie2006} for J magnitudes. 1,435 galaxies fit these criteria.  
+
+Bulk SDSS u, g, r, i, and z-band fits images were then downloaded for all 1,435 galaxy candidates \footnote{http://data.sdss3.org/bulkFields}. Cutouts were made for each galaxy, using the 90\% r-band petrosian radius to set the size of the cutout (\radr). The default prescription used was to define the edges as 2.5*\radr, measured from the galaxy as the center. If the galaxy was within this distance from the edge of the bulk fits image, 2.0*\radr~was used. Cutouts were not made for galaxies within this distance from the edge, both to ensure the full galaxy was visible in all cutouts in the sample, and to avoid over-zooming the image. 187 galaxies were thus removed from \ferengi 2; an example of such a galaxy ``too close'' to the edge of the edge is shown in Figure~\ref{fig:edge_galaxy}.  
+
+
+
+%Figure: galaxy cutouts
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/edge_galaxy.png}
+\caption{Example of a galaxy overlapping the edge of the SDSS frame. Shown is the bulk r-band fits image for SDSS DR12 run 3903, camcol 6, and field 60. The boxed-in galaxy (SDSS DR12 objid 1237662239079268544) is too close to the edge of the image to create a cutout that encloses the entire galaxy. The pink dashed box indicates a cutout size of 2*\radr, the blue solid line indicates a cutout size of 2.5*\radr. } 
+\label{fig:edge_galaxy}
+\end{center}
+\end{figure}
+
+While all 78 $z<0.013$ galaxies from the original \ferengi{} sample were successfuly simulated to a minimum redshift of $z_{sim}=0.3$, this was not always true for the \ferengi 2 candidates. Redshift of the source galaxy is the largest factor in determining the minimum possible simulated redshift, but other factors including the size of the psf and physical size of the source galaxy also come into play. All 1,248 candidates were then put through \ferengi{} at only the lowest redshift $z_{sim}=0.3$ to begin, and each image was visualy inspected to determine whether the code succeeded. 312 ``failures'' were detected; two examples are shown in Figure~\ref{fig:ferengi_fails}. The remaining 936 ``successes'' were then artificially redshift the full range of $0.3<z<1.0$ in increments of $dz = 0.1$; these make up the final \ferengi 2 sample of 7,488 images of 936 galaxies redshifted 8 times. A single evolution factor, rather than a range, of $e=1$ was applied to all images. This value was chosen by analyzing the spectra template models of \cite{Brinchmann2004a}, which showed that the most typical galaxies evolve in brightness by one magnitude per redshift. Example images are shown in Figure~\ref{fig:ferengi2_examples}
+
+
+%Figure: ferengi2 fails
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/failed_ferengis.png}
+\caption{Examples of two galaxies whose minimum simulated redshifts in \ferengi{} were larger than $z_{sim}=0.3$. These were detected via visual inspection and removed from the final \ferengi 2 sample.} 
+\label{fig:ferengi_fails}
+\end{center}
+\end{figure}
+
+
+%Figure: ferengi2 examples
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/ferengi2_examples.png}
+\caption{Examples of \ferengi 2 galaxies. The left is the original gri-composite image of the source galaxy. Images on the right are simulated output from the \ferengi{} code. Only four of the eight simulated redshifts are shown in the interest of space.} 
+\label{fig:ferengi2_examples}
+
+\end{figure}
+ 
+
+
