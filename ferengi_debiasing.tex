@@ -23,7 +23,39 @@ In GZH, the redshift range is large enough that cosmological evolution of the mo
 
 \subsection{The FERENGI code}
 \label{sec:ferengicode}
-Describe details of how code articially redshifts images, inputs and outputs, how psf is handled, limitations, handling of surface brightness dimming and k corrections, etc \citep{Barden2008}
+The Full and Efficient Redshifting of Ensembles of Nearby Galaxy Images code (FERENGI, \citet{Barden2008}) is an IDL procedure that generates simulated images of nearby galaxies viewed at higher redshifts, taking into account cosmological effects such as surface brightness dimming and bandpass shifting. Artificially redshifted samples of galaxies, for which the intrinsic morphologies are already known from low-redshift observations, are useful for studying the imact these effects have on observed galaxy morphologies. For Galaxy Zoo, such images are particularly useful for measuring the effects of redshift on the volunteer classifications. Through classifications made on a set of artificially redshifted galaxies, any dependence they might have as a function of redshift can be measured, allowing a correction to be applied to classifications on images of real, high-redshift galaxies. The details of this type of debiasing technique will be described in Section~\ref{sec:ferengidebiasing}. This section will first provide a breif summary of how the FERENGI code performs the artificial redshifting.
+
+To create realistic images that mimic the seeing and resolution of HST ACS, the FERENGI redshifting procedure consists of four steps (explained in detail in \citet{Barden2008}, but here a simplified outline):
+
+\textbf{i: Modify angular size and surface brightness}
+
+FERENGI first rescales the input image by computing the angular size transformation of the galaxy from its input redshift $z_{i}$ to output reshift $z_{o}$. The angular size $a$ of a distant object is proportional to $a \propto d/(1+z)^2$ (using tan($a$)=$a$ for small angles), where $d$ is the luminosity distance to the object. In units of pixels, the transformation from input angular size $n_{i}$ to output $n_{o}$ can be expressed as:
+
+\begin{equation}
+\frac{n_{o}}{n_{i}}= \frac{d_{i}/(1+z_{i})^2}{d_{o}/(1+z_{o})^2} \frac{p_{i}}{p_{o}} 
+\label{eqn:ferengi_rebinning}
+\end{equation}
+
+with an input pixel scale $p_{i}$ (in this thesis $p_{i}=0.396''$/pix corresponding to SDSS) and $p_{o}$ (0.03''/pix, corresponding to ACS). From here a transformation between the observed fluxes is computed, assuming the absolute magnitude is conserved at both redshifts. 
+
+FERENGI also offers an option to apply an evolutionary correction to the absolute magnitude, which is helpful for a fair comparison of real and artificial high redshift morphologies. Artificially redshifted galaxies will appear much dimmer than their low redshift counterparts if absolute magnitude is conserved.  Since galaxies intrinsically tend to be brighter at high redshift, visual classification of real galaxies cannot be compared as accurately to dimmer, simulated galaxies. To brighten galaxies in a similar way to real galaxies, a magnitude correction $e$ can be input using a linear function:
+
+\begin{equation}
+M_{evo} = e \times z + M
+\label{eqn:ferengievolution}
+\end{equation}
+
+where $e$ represents the magnitude difference between two redshifts separated by $\Delta z=1$. 
+
+\textbf{ii: Account for bandpass shifting} 
+
+As a consequence of cosmological expansion, the flux from a source measured using a broadband filter will not, in general, perfectly correspond to the rest-frame flux emitted at the target wavelength range of the filter. Rather, since observed wavelengths are redder than emitted wavelengths as a function of redshift ($\lambda_{obs}=\lambda_{rest-frame}(1+z)$), filters will tend to pick up light that is bluer (in the galaxy's rest-frame) than its target wavelength; this effect is known as \emph{bandpass shifting}. In order to produce fluxes that mimic those measured by ACS at high redshifts, FERENGI simulates the bandpass shifting effects by applying a correction to the output flux calculated via the IDL routine \textsc{kcorrect}, which incorporates spectral template models from \citet{Bruzual2003}, to measure the expected shifts in flux for a given output filter.   
+
+\textbf{iii: Point Spread Function and noise}
+
+In order to best mimic the HST ACS resolution, the image is then convolved with a PSF created to be as close as possible in shape and width to the ACS PSF. This is done by deconvolving a typical ACS PSF with the input SDSS PSF for each galaxy. This technique works well in general but has limitations - mainly, the widths of the in- and output PSFs must be sufficiently different. If they are comparable, the convolving function can become too narrow. In these cases, the image will be introduced to noise which results in ringing patterns and other oddities (examples of images with this effect are shown in Section~\ref{ssec:ferengi2sample}). Since the difference in PSF widths increases with redshift, this imposes a minimum redshift at which FERENGI can successfuly create images for any given galaxy (discussed more in Section~\ref{sec:ferengi1sample}). Last, Poissonian noise is added to each pixel.
+
+
 
 \section{The FERENGI sample}
 \label{sec:ferengi1sample}
@@ -248,6 +280,7 @@ intervals of 1500.}
 In the previous section I described how we used the simulted \ferengi{} images to measure the redshift/surface brightness dependence on \ffeatures, and applied the measurements towards a correction factor to the vote fractions directly. In this section I will describe the motivation, selection, and application of a second set of \ferengi{} images used to measure and correct for the incompleteness in \emph{number} of disks detected as a function of redshift and surface brightness, used in the work described in Chapter~\ref{chap:gzh_red_disks}.
 
 \subsection{The Ferengi 2 Sample}
+\label{ssec:ferengi2sample}
 
 The creation of a second set of \ferengi{} images was motivated by the scientific goal of measuring the redshift evolution of the fraction of red disk galaxies using the Galaxy Zoo: Hubble dataset. This project is described in full in Chapter~\ref{chap:gzh_red_disks}, but the reasons requiring a new set of simulated images will be described briefly here. First, as described in the previous section, the analysis of the first \ferengi{} set revealed that, for a large area of z-$\mu$ parameter space, galaxies with low measured values of \ffeatures{} could not be corrected to a point that could clearly distingush them as disks with washed-out features or ellipticals. Due to this limitation, any measurement of the number of disk galaxies in a given redshift interval can only be reported as a \emph{lower-limit} to the true value. The difference in the measured lower-limit and the true number of disks is what we will refer to as the \emph{incompleteness} in number of disks detected. 
 
