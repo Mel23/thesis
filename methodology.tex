@@ -1,0 +1,40 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% methodology.tex: Citizen Science chapter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Methodology}
+\label{chap:methodology}
+
+
+\section{Galaxy Zoo Data Reduction}
+\subsection{User weighting by consistency}
+A typical Galaxy Zoo project collects classifications from over 10,000 unique volunteers. With such large numbers of classifiers, there exists the possibility that some fraction of these are ``unreliable'', that is, their votes are consistent with random clicking. To ensure that all votes collected represent real classifications, a weighting technique is implemented to detect and down-weight unreliable votes.
+
+The weighting scheme used for GZ projects represented in this thesis (GZ2, GZ:UKIDSS, and GZ:Hubble) evaluates the consistency of each user by how often their votes agree with the majority vote for each task in the decision tree. The consistency rating $\kappa$ for a single task is defined as:
+
+\begin{equation}
+\kappa = \frac{1}{N_{r}}\sum_{i=1}^{N_{r}}{\kappa_{i}}
+\label{eqn:kappa}
+\end{equation}
+
+where $N_{r}$ represeents the total number of responses to the task, and $\kappa_{i} = f_{r}$ if the user's vote corresponds to response $i$, and $\kappa_{i} = (1-f_{r})$ if it does not. In this system, $\kappa$ is then high if the vote agrees with the majority, and low if it does not. 
+
+The mean consistency computed for each response given is defined as the user's overall consistency $<\kappa>$, and the user is assigned a weight $w$ defined as:
+
+\begin{equation}
+w = min (1.0,(<\kappa>/0.6)^{8.5})
+\label{eqn:weight}
+\end{equation}
+ 
+
+
+
+
+
+\subsection{Classification bias}
+% end of chapter
+
+
+
+
+
+
