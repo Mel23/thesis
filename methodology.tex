@@ -4,33 +4,73 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
+\begin{figure}
+\centering
+\includegraphics[width=0.95\textwidth]{figures/gz_interface_1.png}
+\caption{Interface}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\textwidth]{figures/gzh_decision_tree.pdf}
+\caption{Decision tree for Galaxy Zoo:Hubble. Explain colors. Identical to GZ2 and UKIDSS with the addition of the clumpy question.}
+\end{figure}
 
 \section{Galaxy Zoo Data Reduction}
 \subsection{User weighting by consistency}
 A typical Galaxy Zoo project collects classifications from over 10,000 unique volunteers. With such large numbers of classifiers, there exists the possibility that some fraction of these are ``unreliable'', that is, their votes are consistent with random clicking. To ensure that all votes collected represent real classifications, a weighting technique is implemented to detect and down-weight unreliable votes.
 
-The weighting scheme used for GZ projects represented in this thesis (GZ2, GZ:UKIDSS, and GZ:Hubble) evaluates the consistency of each user by how often their votes agree with the majority vote for each task in the decision tree. The consistency rating $\kappa$ for a single task is defined as:
+The weighting scheme used for all GZ projects represented in this thesis (GZ2, GZ:UKIDSS, and GZ:Hubble) evaluates the consistency of each user by how often their votes agree with the majority for each task in the decision tree. The consistency rating $\kappa$ for a single task is defined as:
 
 \begin{equation}
 \kappa = \frac{1}{N_{r}}\sum_{i=1}^{N_{r}}{\kappa_{i}}
 \label{eqn:kappa}
 \end{equation}
 
-where $N_{r}$ represeents the total number of responses to the task, and $\kappa_{i} = f_{r}$ if the user's vote corresponds to response $i$, and $\kappa_{i} = (1-f_{r})$ if it does not. In this system, $\kappa$ is then high if the vote agrees with the majority, and low if it does not. 
+where $f_{r}$ is the vote fraction for each response in the task, $N_{r}$ represents the total number of responses to the task, $\kappa_{i} = f_{r}$ if the user's vote corresponds to response $i$, and $\kappa_{i} = (1-f_{r})$ if it does not. In this system, $\kappa$ is then high if the vote agrees with the majority, and low if it does not. 
 
-The mean consistency computed for each response given is defined as the user's overall consistency $<\kappa>$, and the user is assigned a weight $w$ defined as:
+The mean consistency computed for each response given is defined as the user's overall consistency $\bar{\kappa}$, and the user is assigned a weight $w$ defined as:
 
 \begin{equation}
-w = min (1.0,(<\kappa>/0.6)^{8.5})
+w = \rm min (1.0,(\bar{\kappa}/0.6)^{8.5})
 \label{eqn:weight}
 \end{equation}
+
+All votes are then recalculated using the user weights, and the process is repeated as many as three times to ensure convergence. It can be seen in Equation~\ref{eqn:weight} that a user's weight value is always less than or equal to one; in other words, users are only downweighted in cases of noticeable inconsistency, and never upweighted. \citet{Willett2013} show that most users with low consistencies tend to only have contributed a handful of classifications, which could either indicate that users become more accurate as they classify more galaxies, or that inconsistent users are inherently less likely to be interested in the project. 
+
  
+\subsection{Classification bias in the local Universe}
+
+For samples of galaxies limited to the local universe ($z\lesssim0.2)$, there is no expected redshift dependence on the morphological classifications. Therefore, we would expect vote fractions representing different morphological features to be constant with respect to redshift. However, this is not the case - the average vote fraction for features, bars, spirals, and several others actually tend to \emph{decrease} with redshift. Since we assume such features should be equally prevalent at any redshift in this small range, some bias unrelated to any true morphological evolution must be affecting the vote fractions. 
+
+The source of this bias comes from the apparent size and brightness of the images of the galaxies being classified, which are strongly affected by redshift. Images of more distant galaxies appear smaller and dimmer, and therefore finer features are simply more difficult to detect. This sort of classification bias is a problem with any morphological classification, whether it be expert classifiers, automated dection, or crowd-sourced visual inpsection.
+
+This section will describe the methods used to correct this type of classification bias for galaxies in the local Universe, where no true morphological evolution is a factor. Beyond the local Universe this assumption is no longer valed, so techniques implimenting classifications of artificially-redshifted galaxies are used for calibration; these are described in detail in Chapter~\ref{chap:ferengidebiasing}. 
+
+\subsubsection{Debiasing Galaxy Zoo 2}
+
+The debiasing technique used in GZ2 assumed firstly that galaxies with similar brightnesses and sizes should, on average, share similar mixes of morphologies at any redshift. Using this assumption, galaxies were grouped into bins of absolute magnitude $M_r$, Petrosian effective radius $R_{50}$, and redshift. For each task in the GZ2 decision tree, the vote fractions for each response in any size/magnitude bin were adjusted so that their average matched the average vote fraction of its lowest-redshift bin. This method is described in detail in \citet{Willet2013}, but the main approach is as follows:
+
+For a given size/magnitude bin, the ratio of vote fractions for a pair of responses $i$ and $j$ for a single task can be written as $f_i/f_j$. Due to the classification bias described above, this ratio may not reflect the ``true'' ratio for this size/magnitude range, but can be written in terms of the true ratio with a multiplicitave constant $K_{i,j}$:
+
+\begin{equation}
+\left(\frac{f_i}{f_j}\right)_{z=z'} = \left(\frac{f_i}{f_j}\right)_{z=0} \times K_{i,j}
+\label{eqn:fvspk}
+\end{equation}
+
+Where $(f_i/f_j)_{z=z'}$ represents the ratio measured in a size/magnitude bin at $z=z'$, and $(f_i/f_j)_{z=0}$ is the ``true,'' or intrinsic ratio of vote fractions, defined as the ratio measured in the lowest redshift bin.
+
+Figure~\ref{fig:gz2debiased} shows the local ($z=0$) ratios of $f_i/f_j$ for the first two responses $i$ and $j$ for the first three tasks of the GZ2 decision tree, which are used to calculate the debiased vote fractions as outlined above. For Task 01, $f_i/f_j$ corresponds to $f_{smooth}/f_{features}$, for Task 02 $f_{edgeon}/f_{not~edgeon}$, and for Task 03 $f_{bar}/f_{no~bar}.$ The figure demonstrates the size and magnitude dependence of the most local morphological populations: for example, in Task 01, the largest and brightest galaxies tend to have more votes for ``smooth'' than ``featured'', which is consistent with our current understanding that ellipticals tend to be larger and more massive than spirals. 
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/gz2debiased.pdf}
+\caption{Local ratios of morphologies for the first three tasks in the GZ2 decision tree, used to derive debiased votes for the GZ2 sample. The full figure which includes baseline ratios for all tasks in the GZ2 decision tree is shown in \citet{Willett2013}, Figure 5.}
+\label{fig:gz2debiased}
+\end{figure} 
 
 
 
-
-
-\subsection{Classification bias}
 % end of chapter
 
 
