@@ -4,6 +4,11 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
+-Classifying galaxies by morphology *independently* of proxies like color or mass is important because the morphology traces the dynamics while color traces stellar content, and these are only correlated on average and in the local universe. 
+
+
+
+
 \begin{figure}
 \centering
 \includegraphics[width=0.95\textwidth]{figures/gz_interface_1.png}
@@ -47,9 +52,9 @@ The source of this bias comes from the apparent size and brightness of the image
 
 This section will describe the methods used to correct this type of classification bias for galaxies in the local Universe, where no true morphological evolution is a factor. Beyond the local Universe this assumption is no longer valed, so techniques implimenting classifications of artificially-redshifted galaxies are used for calibration; these are described in detail in Chapter~\ref{chap:ferengidebiasing}. 
 
-\subsubsection{Debiasing Galaxy Zoo 2}
+\subsubsection{Debiasing Galaxy Zoo 2: W13 method}
 
-The debiasing technique used in GZ2 assumed firstly that galaxies with similar brightnesses and sizes should, on average, share similar mixes of morphologies at any redshift. Using this assumption, galaxies were grouped into bins of absolute magnitude $M_r$, Petrosian effective radius $R_{50}$, and redshift. For each task in the GZ2 decision tree, the vote fractions for each response in any size/magnitude bin were adjusted so that their average matched the average vote fraction of its lowest-redshift bin. This method is described in detail in \citet{Willet2013}, but the main approach is as follows:
+The debiasing technique used in GZ2 assumed firstly that galaxies with similar brightnesses and sizes should, on average, share similar mixes of morphologies at any redshift. Using this assumption, galaxies were grouped into bins of absolute magnitude $M_r$, Petrosian effective radius $R_{50}$, and redshift. For each task in the GZ2 decision tree, the vote fractions for each response in any size/magnitude bin were adjusted so that their average matched the average vote fraction of its lowest-redshift bin. This method is described in detail in \citet{Willett2013}, but the main approach is as follows:
 
 For a given size/magnitude bin, the ratio of vote fractions for a pair of responses $i$ and $j$ for a single task can be written as $f_i/f_j$. Due to the classification bias described above, this ratio may not reflect the ``true'' ratio for this size/magnitude range, but can be written in terms of the true ratio with a multiplicitave constant $K_{i,j}$:
 
@@ -60,8 +65,6 @@ For a given size/magnitude bin, the ratio of vote fractions for a pair of respon
 
 Where $(f_i/f_j)_{z=z'}$ represents the ratio measured in a size/magnitude bin at $z=z'$, and $(f_i/f_j)_{z=0}$ is the ``true,'' or intrinsic ratio of vote fractions, defined as the ratio measured in the lowest redshift bin.
 
-Figure~\ref{fig:gz2debiased} shows the local ($z=0$) ratios of $f_i/f_j$ for the first two responses $i$ and $j$ for the first three tasks of the GZ2 decision tree, which are used to calculate the debiased vote fractions as outlined above. For Task 01, $f_i/f_j$ corresponds to $f_{smooth}/f_{features}$, for Task 02 $f_{edgeon}/f_{not~edgeon}$, and for Task 03 $f_{bar}/f_{no~bar}.$ The figure demonstrates the size and magnitude dependence of the most local morphological populations: for example, in Task 01, the largest and brightest galaxies tend to have more votes for ``smooth'' than ``featured'', which is consistent with our current understanding that ellipticals tend to be larger and more massive than spirals. 
-
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/gz2debiased.pdf}
@@ -69,6 +72,40 @@ Figure~\ref{fig:gz2debiased} shows the local ($z=0$) ratios of $f_i/f_j$ for the
 \label{fig:gz2debiased}
 \end{figure} 
 
+Figure~\ref{fig:gz2debiased} shows the local ($z=0$) ratios of $f_i/f_j$ for the first two responses $i$ and $j$ for the first three tasks of the GZ2 decision tree, which are used to calculate the debiased vote fractions as outlined above. For Task 01, $f_i/f_j$ corresponds to $f_{smooth}/f_{features}$, for Task 02 $f_{edgeon}/f_{not~edgeon}$, and for Task 03 $f_{bar}/f_{no~bar}.$ The figure demonstrates the size and magnitude dependence of the most local morphological populations: for example, in Task 01, the largest and brightest galaxies tend to have more votes for ``smooth'' than ``featured'', which is consistent with our current understanding that ellipticals tend to be larger and more massive than spirals. 
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/rh_placeholder.png}
+\caption{Placeholder - will make original later. Shows results of 2 debiasing methods for the first 3 tasks in GZ2}. 
+\label{fig:gz2debiasingresults}
+\end{figure}
+
+%this paragraph is shit fix it
+The results of this method for the first three Tasks in the GZ2 decision tree are shown in Figure~\ref{fig:gz2debiasingresults}. For each response in each Task, the average vote fraction is calculated as a function of redshift. Solid lines represent the weighted/non-debiased votes and the dotted lines are the debiased votes using this method (hereafter W13).
+The redshift dependence on vote fraction is very evident in the downward trend of the solid lines corresponding to responses which detect features, such as $f_{features}$ and $f_{bar}$ in this example. The dashed lines show the effect of the debiasing which attempts to flatten out the distribution. Full figures showing the results for all Tasks in the tree are available in \citet{Willett2013} (Figure 3) and \citet{Hart2016} (Figure 8). From 2013-2017, the debiased vote fractions calculated in this method were used in the majority of published Galaxy Zoo papers, and are used in the study described by Chapter~\ref{chap:baragn}. 
+
+
+\subsubsection{Debiasing GZ2 and UKIDSS: H16 method}
+
+The W13 debiasing method is successful at adjusting the vote fractions to more accurately resemble the ``true'' distribution of morphologies at low redshift, but has two primary limitations. First, the rectangular binning of all three parameters (size, magnitude, and redshift) is only effective when the parent sample is large enough that sufficient data per bin remains available after the three dimentional binning. (For example, to requre 10 bins in each parameter with at least 50 galaxies per bin, a parent sample must contain at minimum N=10x10x10x20=50,000 galaxies, assuming a perfectly even distribution of values in each parameter). GZ2 is not so affected by this limitation, with a parent sample size of $\sim$ 250,000 galaxies. However, this is only true when considering the debiasing of the first Task, which is asked of every galaxy. After this Task, the parent sample for computing a correction term decreases as not all Tasks are asked of every galaxy; for example, the Tier 4 Task which asks for the number of spiral arms is only seen by the majority of volunteers in 33,000 galaxies of the full GZ2 sample. Thus debiasing this Task would require a smaller limit on the number of bins per dimension or the number of galaxies per bin, both of which decrease the robustness of the method. Even with a large parent sample for any Task, the rectangular binning is also limited by the inability to account for data which lie on the outer edges of the parameter space, as there tends to be insufficient data in the outer bins. 
+
+A new debiasing technique (hereafter H16) was developed by Galaxy Zoo member Ross Hart \citep{Hart2016} which substitutes Voronoi binning for the rectangular method. Voronoi binning optimizes the shape and location of bins based on the desired signal for each bin; in this case, the number of galaxies per bin is set initially, and the bins are drawn to fulfill that requirement. In this way, the number of galaxies available for measuring the change in vote fractions for each bin is maximized. Thus, this method is more effective at debiasing smaller samples, where the three dimensional binning preserves the signal in each bin. This method was therefore used to debias the UKIDSS sample which is much smaller than GZ2, with only $\sim$70,000 galaxies. An example of Voronoi binning the UKIDSS data in size and magnitude is shown in the left panel of Figure~\ref{fig:voronoi}. Each size and magnitude bin is then Voronoi-binned by redshift. 
+
+The second limitation of the W13 method is that while it effectively corrects the vote fractions for any Task so that the average morphology is constant as a function of redshift, it does not account for the \emph{distribution} of morphologies at low redshift. This produces good results when the corrected values are used for population studies, where the percentage of galaxies exhibiting a particular morphology are desired, but may not always reproduce accurate \emph{individual} vote fractions. The R16 method instead corrects the high redshift vote fractions based on the change in distribution of vote fractions observed at low redshift, rather than comparing to only the average values. The first step of this method is shown in the right panel of Figure~\ref{fig:voronoi}. For the low redshift bin of a given task, the cumulative distribution of vote fractions for each response is fit with a continuous function, which is used as the baseline distribution (similar to teh baseline average votes in the W13 method.) The vote fractions making up the cumulative distributions at higher redshifts are then adjusted as needed to match the low redshift distribution as closely as possible.
+
+Results of this method are shown and compared to W13 in Figure~\ref{fig:gz2debiasingresults}. The top row shows the average vote fractions as a function of redshift for the raw (solid lines), W13 debiased (dashed lines), and R15 debiased data (dotted lines). Both methods are succesful in stabalizing the average morphologies across redshift. The bottom row shows the distribution of vote fractions of a low-redshift bin and high redshift bin. It can be seen here that while both methods can reproduce the average vote fractions at low redshift, the R15 method is more succesful in reproducing the distribution of votes at low redshift.  
+ 
+
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/voronoi_placeholder.png}
+\caption{Placeholer - make my own later. Left shows how voronoi binning is done; compare to rectangular binning in W13. Right is cumulative distribution of some vote fraction at low and high redshift.}
+\label{fig:voronoi}
+\end{figure}
 
 
 % end of chapter
