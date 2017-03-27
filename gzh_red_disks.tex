@@ -22,4 +22,28 @@ Another probe for understanding the transition from blue cloud to red sequence i
 
 A closer look at the populations within the green valley show that the processes causing galaxies to evolve from the blue cloud to red sequence may be very different. \citet{Schawinski2009} studied the morphological distribution (measured by the GZ1 project) of $\sim$4000 green-valley galaxies, finding that late-type and early-types likely go through two different evolutionary tracks. For late-types, the quenching process is gradual, and initiated by a cutoff of a gas reservoir. Galaxies quenched recently in this way would populate the green valley at $z=0$, and those which quenched at an earlier time would be currently identified as red passive disks. Whether these red disks continue to evolve into spheroidals via some process after the initial quenching is unclear from a local Universe analysis. For early-types, the quenching is rapid and probably external and violent, thus triggering the morphological change from disk to spheroidal.  
 
-Analysis of the color-morphology relationship in the local Universe has revealed a close but imperfect bimodality as well as proposed mechanisms by which galaxies undergo different quenching processes, driving their evolution along the CMD. Even more may be revealed by studying the different populations as a function of cosmic time, which is becoming more possible with the data from large high-redshift surveys such as COSMOS and deep imaging via HST-ACS. It has been established now, for instance, that the bimodality does exist out to $z\sim1$ \citep{Bell2004,Cirasuolo2007,Mignoli2009} and possibly beyond \citep{Giallongo2005,VanDokkum2006,Franzetti2007,Cassata2008}. What requires further study is how exactly the proportions change at different epochs. 
+Analysis of the color-morphology relationship in the local Universe has revealed a close but imperfect bimodality as well as proposed mechanisms by which galaxies undergo different quenching processes, driving their evolution along the CMD. Even more may be revealed by studying the different populations as a function of cosmic time, which is becoming more possible with the data from large high-redshift surveys such as COSMOS and deep imaging via HST-ACS. It has been established now, for instance, that the bimodality does exist out to $z\sim1$ \citep{Bell2004,Cirasuolo2007,Mignoli2009} and possibly beyond \citep{Giallongo2005,VanDokkum2006,Franzetti2007,Cassata2008}. What requires further study is how exactly the proportions change at different epochs.
+
+
+\section{Galaxy Classification: Identifying the Passive Population}
+
+To classify the galaxies as quiescent or star-forming, a method similar to that described by \citet{Ilbert2013} (hereafter I13) was used, which implements a rest-frame NUV-$r^{+}$ versus $r^{+}$-J diagnostic. Here are some reasons these colors are great (NUV-r:) \citep{Arnouts2007a,Salim2005a,Wyder2007},\citep{Martin2007}
+
+The demarcation line to separate the quiescent and active populations at $z=1$ is adopted from I13, which defines the quiescent galaxies as those which satisfy: $M_{NUV}-M_{r^{+}} > 3(M_{r^{+}}-M_{J})+1$ and $M_{NUV}-M_{r^{+}} > 3.1$. I13 applies this criteria to all galaxies in a range of $0.2<z<3$, although it performs best at separating the two populations in the redshift bin $0.7<z<1.2$, where $>98\%$ of galaxies identified as quiescent exhibited star formation rates less than $log(SFR) = -11$ (see Figure 3 of I13). Therefore this work uses the I13 separation criteria at $z=1$, and computes the evolution of the demarcation lines as a function of redshift to $z=0$. 
+
+The evolution of $r-J$ and $NUV-r$ colors was measured using a stellar population synthesis model from \citet{Bruzual2003}. An instantanious-burst model (ssp) was chosen from the Padova1994 track to represent the color evolution of a passively evolving galaxy, with a metallicity $Z=0.008=.4Z_{\sun}$, which is the typical metallicity of passive galaxies with mass $9 < log(M_{*}/M_{\odot}) < 10$ (\citet{Peng2015}, Figure 2a), chosen to correspond to the median mass of the sample ($log(M_{*}/M_{\odot})=9.7)$. Figure~\ref{fig:bcmodel} shows the evolution of the two colors as a function of redshift, where the single starburst at $t=0$ was placed at $z=6$. A linear relationship was fit to the data within the range $0<z<2$, and the slope was used to redefine the demarcation lines in five redshift bins: one with central value $z=0.007$ (used to classify the SDSS ferengi2 sample), and four with central values $z$ = [0.30,0.50,0.70,0.90] with widths $\Delta z=0.2$. The quiescent galaxies are thus defined in these bins as those that satisfy:
+
+\begin{equation}
+M_{NUV}-M_{r^{+}} > 3.1 + a_{1}(z)
+~\rm and~
+M_{NUV}-M_{r^{+}} > 3(M_{r^{+}}-M_{J} + a_{2}(z))+ a_{1}(z) + 1  
+\end{equation}
+
+where $a_{1}(z) = [0.54,0.38,0.27,0.16,0.05]$ and $a_{2}(z) = [0.19,0.14,0.10,0.06,0.02]$. 
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/hr_m52_evo.pdf} 
+\caption{m52}
+\label{fig:bcmodel}
+\end{figure}
