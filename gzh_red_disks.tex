@@ -24,9 +24,13 @@ A closer look at the populations within the green valley show that the processes
 
 Analysis of the color-morphology relationship in the local Universe has revealed a close but imperfect bimodality as well as proposed mechanisms by which galaxies undergo different quenching processes, driving their evolution along the CMD. Even more may be revealed by studying the different populations as a function of cosmic time, which is becoming more possible with the data from large high-redshift surveys such as COSMOS and deep imaging via HST-ACS. It has been established now, for instance, that the bimodality does exist out to $z\sim1$ \citep{Bell2004,Cirasuolo2007,Mignoli2009} and possibly beyond \citep{Giallongo2005,VanDokkum2006,Franzetti2007,Cassata2008}. What requires further study is how exactly the proportions change at different epochs.
 
+\section{Sample Selection}
+\label{sec:reddisksample}
+info to include:
+cross match with ultravista for rest-frame colors, volume limit, morphological cuts (pfeatures, pclumpy, pedgeon)
 
 \section{Galaxy Classification: Identifying the Passive Population}
-
+\label{sec:colorcolor}
 To classify the galaxies as quiescent or star-forming, a method similar to that described by \citet{Ilbert2013} (hereafter I13) was used, which implements a rest-frame NUV-$r^{+}$ versus $r^{+}$-J diagnostic. Here are some reasons these colors are great (NUV-r:) \citep{Arnouts2007a,Salim2005a,Wyder2007},\citep{Martin2007}
 
 The demarcation line to separate the quiescent and active populations at $z=1$ is adopted from I13, which defines the quiescent galaxies as those which satisfy: $M_{NUV}-M_{r^{+}} > 3(M_{r^{+}}-M_{J})+1$ and $M_{NUV}-M_{r^{+}} > 3.1$. I13 applies this criteria to all galaxies in a range of $0.2<z<3$, although it performs best at separating the two populations in the redshift bin $0.7<z<1.2$, where $>98\%$ of galaxies identified as quiescent exhibited star formation rates less than $log(SFR) = -11$ (see Figure 3 of I13). Therefore this work uses the I13 separation criteria at $z=1$, and computes the evolution of the demarcation lines as a function of redshift to $z=0$. 
@@ -44,6 +48,50 @@ where $a_{1}(z) = [0.54,0.38,0.27,0.16,0.05]$ and $a_{2}(z) = [0.19,0.14,0.10,0.
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/hr_m52_evo.pdf} 
-\caption{m52}
+\caption{Evolution of colors using stellar population synthesis models. Galaxy was assumed to have formed at $z=6$ for plotting purposes.}
 \label{fig:bcmodel}
 \end{figure}
+
+\section{Using Ferengi2 to correct for incompleteness in the red disk fraction}
+
+described in previous section that it's difficult or impossible to disentangle whether a small vote fraction of \ffeatures corresponds to galaxies which are intrinsically smooth, or whose features have been washed out at high redshift. So while we can't correct the vote fraction for unique galaxies, we \emph{can} estimate the \emph{number} of disk galaxies we would fail to detect at a given redshift. 
+
+To account for this incompleteness in disk detection, a correction factor $\xi$ is applied. This is defined as the number of disks detected divided by the true number of disks expected to exist in a given redshift interval: $\rm \xi(z)=N_{detected}/N_{true}$. Acknowledging that the completeness in disk detection may depend on galaxy color, the corrected red disk fraction can be calculated as:
+
+\begin{equation}
+f=\frac{N_{RD}\times \xi^{-1}_{red}}{N_{RD}\times \xi^{-1}_{red} + N_{BD} \times \xi^{-1}_{blue}}
+\label{eqn:reddiskfraction}
+\end{equation}
+
+If there is no color bias in disk detection, $\xi_{red}=\xi_{blue}$, and this term cancels out, leaving the fraction unchanged. If there is a bias, however, the $\xi$ terms do not cancel, and the incompleteness in disk detection could have a large effect on the red disk fraction. Therefore a careful measurment of $\xi$ is estimated for both red and blue disk galaxies using the \ferengi2 set of simulated images.
+
+\ferengi2 is the set of images created from 936 nearby ($z<0.01$) galaxies that were artificially redshifted to 8 redshifts between $z=0.3$ and $z=1$, giving a total of 7,488 simulated images (the sample is described in detail in Chapter~\ref{chap:ferengi}). The images were classified in Galaxy Zoo using the same decision tree as used for Galaxy Zoo Hubble. 134 highly inclined disk galaxies were removed from the sample by excluding any with $N_{edgeon}>20$ and $f_{not~edge-on}>=0.6$, using the vote fraction associated with the real galaxy image measured in GZ2. This cut was shown in Chapter~\ref{chap:baragn} to correlate well with inclination angle $cos(a/b)<67^\circ$. This was to exclude those which may be mis-classified due to dust-reddening (see section~\ref{sec:reddisksample}).  Using the NUV-J-R selection method described in section~\ref{sec:colorcolor}, the remaining sample was divided into a set of red sequence galaxies (259 per redshift bin) and blue cloud (543 per each redshift bin), shown in Figure~\ref{fig:ferengi2colorcolor}.
+ 
+
+\begin{figure}
+\centering
+\includegraphics[width=.6\textwidth,trim={.5cm 0cm .5cm 0cm},clip]{figures/ferengi2_colorcolor.pdf}
+\caption{Separation of the quiescent population (red sequence) and active population (blue cloud) of the \ferengi2 sample.}
+\label{fig:ferengi2colorcolor}
+\end{figure}
+
+
+The completness values $\xi_{red}(z),\xi_{blue}(z)$ were then computed in varying bins of redshift for the red sequence and blue cloud galaxies separately. An example calculation of $\xi_{blue}$ in the $z=0.7$ bin is shown in Figure~\ref{fig:inc_subplot}. Each point represents a \ferengi2 galaxy, where the y-axis indicates the value of \ffeatures~measured in the image redshifted to $z=0.7$, and the x-axis indicates the value of \ffeatures~measured in the same galaxy redshifted to $z=0.3$. Disk galaxies are identified as those for which \ffeatures~$\ge0.3$. Since, on average, \ffeatures~decreases for the same galaxy but viewed at higher redshifts, the number of galaxies meeting this threshold is generally fewer at higher redshifts than lower redshifts. This is indicated by the dotted lines: galaxies to the right of the vertical dashed line at $\rm f_{features,z=0.3}=0.3$ are identified as disks at $z=0.3$; their sum is considered the ``true'' number of disks, $\rm N_{true}$. Similarly, the galaxies above the horizontal line at $\rm f_{features,z=0.7}=0.3$ are identified as disks at $z=0.7$; their sum is the ``detected'' number of disks at $z=0.7$, or $\rm N_{detected}$. As obvious in the figure, $\rm N_{detected}$ is in general much lower than $\rm N_{true}$, emphasizing the increasing difficulty in detecting features at higher redshifts. Their ratio is the completeness $\xi$; in this example $\xi_{blue}(z=0.7)=0.61$, meaning only 61\% of disks were detected at this redshift. 
+
+\begin{figure}
+\centering
+\includegraphics[width=.65\textwidth]{figures/incompleteness_z7.pdf}
+\caption{Example calculation of completeness $\xi$ at redshift $z=0.7$. Points represent \ferengi2 images classified in Galaxy Zoo. The y-axis corresponds to the value of \ffeatures~measured at the galaxy redshifted to $z=0.7$, and the x-axis corresponds to the value of \ffeatures~measured at the galaxy redshifted to $z=0.3$. On average, the \ffeatures~is lower at the higher redshift, indicating users on average have more difficulty identifying features in images at higher redshifts. The dotted lines correspond to \ffeatures=0.3, the threshold above which a galaxy is considered to have a disk. Galaxies to the right of the vertical dashed line were identified as disks at the lowest redshift $z=0.3$, the total number defined as $\rm N_{true}$, the true number of disks. Galaxies above the horizontal dash line were identified as disks at the higher redshift $z=0.7$, the total number defined as $\rm N_{detected}$. The ratio $\rm \xi=N_{detected}/N_{true}$ is the completeness value; in this example, only 61\% of disks were detected at $z=0.7$.}
+\label{fig:inc_subplot}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,trim={3cm 0cm 3cm 0cm},clip]{figures/xi_v_sb.pdf}
+\caption{Completeness $\xi$ as a function of redshift and surface brightness for red sequence (left) and blue cloud galaxies (right).}
+\label{fig:xi_v_sb}
+\end{figure}
+
+
+
+ 
