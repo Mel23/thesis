@@ -85,6 +85,11 @@ The completness values $\xi_{red}(z),\xi_{blue}(z)$ were then computed in varyin
 \label{fig:inc_subplot}
 \end{figure}
 
+It was hypothesized that the completeness in disk detection may be a function of other parameters in addition to redshift. At fixed redshift, for example, it is reasonable to guess that features could be easier to detect galaxies that have higher mass, radius, or surface brightness. To test whether these parameters also impact the number of disks detected, the completeness was measured in fixed redshift bins as a function of surface brightness, effective radius, and mass. Surface brightness was measured using \sextractor{} calculations of {\tt MAG\_AUTO}, $b/a$ and $R_{e}$ measured in the \Iband{} band images, in the same way as described in Chapter~\ref{chap:ferengi}. The effective radius used was the 50\% {\tt FLUX\_RADIUS} converted in to kpc, and the masses used were the {\tt MEDIAN} values calculated in the MPA-JHU catalog.
+
+Figure~\ref{fig:xi_v_sb} shows completeness as a function of redshift and surface brightness, for the red sequence and blue cloud galaxies. 8 redshift bins were further divided into bins of surface brightness with varying widths, where the sizes were chosen to satisfy that $N_detected + N_true \ge 10$ in each bin. This was chosen as a comprimise between having a sufficient number of galaxies in each bin to compute the completness fraction $\xi = N_{detected}/N_{true}$, and to have enough bins of surface brightness to measure a trend with confidence of completeness as a function of $\mu$. Visual inspection of the data did not suggest any relationship between the two. To be sure, the data were fit to a linear function in each redshift bin (Figure~\ref{fig:notlinear}). For each fit, a p-value representing a hypothesis test whose null hypothesis is that the slope is zero was computed. Only one reached the criteria $p<0.05$, but with a low $R^{2}$ value of 0.28 which is not considered large enough to represent a good fit. This process was repeated using effective radius and mass as parameters, with the same results. Therefore only redshift was used as a parameter which impacted completeness value with confidence.  
+
+
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth,trim={3cm 0cm 3cm 0cm},clip]{figures/xi_v_sb.pdf}
@@ -92,6 +97,20 @@ The completness values $\xi_{red}(z),\xi_{blue}(z)$ were then computed in varyin
 \label{fig:xi_v_sb}
 \end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,trim={2cm 1cm 2cm 1cm},clip]{figures/notlinear.pdf}
+\caption{Completeness $\xi$ as a function of redshift and surface brightness for red sequence (left) and blue cloud galaxies (right).}
+\label{fig:notlinear}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth,trim={2cm 1cm 2cm 1cm},clip]{figures/completenessmoneyplot.pdf}
+\caption{Completeness $\xi$ as a function of redshift moneyplot}
+\label{fig:notlinear}
+\end{figure}
 
 
  
