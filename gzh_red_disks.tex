@@ -24,6 +24,21 @@ A closer look at the populations within the green valley show that the processes
 
 Analysis of the color-morphology relationship in the local Universe has revealed a close but imperfect bimodality as well as proposed mechanisms by which galaxies undergo different quenching processes, driving their evolution along the CMD. Even more may be revealed by studying the different populations as a function of cosmic time, which is becoming more possible with the data from large high-redshift surveys such as COSMOS and deep imaging via HST-ACS. It has been established now, for instance, that the bimodality does exist out to $z\sim1$ \citep{Bell2004,Cirasuolo2007,Mignoli2009} and possibly beyond \citep{Giallongo2005,VanDokkum2006,Franzetti2007,Cassata2008}. What requires further study is how exactly the proportions change at different epochs.
 
+
+
+\subsection{Quenching Mechanisms}
+\label{ssec:qmechs}
+Define quenching - any process which causes SF to cease, other than natural isolation. 
+\subsubsection{Ram Pressure Stripping}
+
+As a galaxy moves through the intracluster medium (ICM), it experiences ram pressure $P_{ram} = \rho_e v^2$, where $\rho_e$ is the density of the ICM and $v$ is the velocity of the galaxy \citep{Gunn1972}. The force per area required to hold gas onto the traveling galaxy is $F/A = 2\pi G \sigma_{s} \sigma_{g}$, where $\sigma_{s}$ and $\sigma_{g}$ are the star and gas surface densities, respecitively. If a galaxy is moving fast enough, or the ICM density is large enough, the ram pressure can exceed this force and consequently rip the gas from the galaxy; this process is known as ram pressure stripping. Evidence of this effect is seen observationally in asymmetries of the disk in spirals (a common example is NGC 4402, which has a bowed appearance and a one-sided concentration of dust, believed to be the effects of the galaxy struggling to hold onto gas on the outer regions of the disk) and truncated radial density profiles. Simulations \citep{Steinhauser2016} show that extreme cases of ram pressure stripping can completely strip a galaxy of its cold gas, causing a rapid quenching on timescales of a few hundred Myr. More mild cases, on the other hand, can actually temporarily increase star formation, which quickly uses up the available cold gas, and eventually quenches the galaxy on timescales similar to natural isolation, $\sim 1Gyr$. \citet{Fillingham2016} find a mass dependence on the efficiency of this process: they find RPS to be very efficient and rapid for galaxies $M_{*} = 10^{8-9}M_{\odot}$ for a range of halo host properties, suggesting RPS may be the dominant quenching mechanism for low-mass galaxies.  
+
+\subsubsection{Strangulation}
+\subsubsection{Harassment}
+\subsubsection{Mass quenching}
+\subsubsection{AGN feedback}
+\subsubsection{Mergers}
+
 \section{Sample Selection}
 \label{sec:reddisksample}
 info to include:
@@ -76,7 +91,7 @@ If there is no color bias in disk detection, $\xi_{red}=\xi_{blue}$, and this te
 \end{figure}
 
 
-The completness values $\xi_{red}(z),\xi_{blue}(z)$ were then computed in varying bins of redshift for the red sequence and blue cloud galaxies separately. An example calculation of $\xi_{blue}$ in the $z=0.7$ bin is shown in Figure~\ref{fig:inc_subplot}. Each point represents a \ferengi2 galaxy, where the y-axis indicates the value of \ffeatures~measured in the image redshifted to $z=0.7$, and the x-axis indicates the value of \ffeatures~measured in the same galaxy redshifted to $z=0.3$. Disk galaxies are identified as those for which \ffeatures~$\ge0.3$. Since, on average, \ffeatures~decreases for the same galaxy but viewed at higher redshifts, the number of galaxies meeting this threshold is generally fewer at higher redshifts than lower redshifts. This is indicated by the dotted lines: galaxies to the right of the vertical dashed line at $\rm f_{features,z=0.3}=0.3$ are identified as disks at $z=0.3$; their sum is considered the ``true'' number of disks, $\rm N_{true}$. Similarly, the galaxies above the horizontal line at $\rm f_{features,z=0.7}=0.3$ are identified as disks at $z=0.7$; their sum is the ``detected'' number of disks at $z=0.7$, or $\rm N_{detected}$. As obvious in the figure, $\rm N_{detected}$ is in general much lower than $\rm N_{true}$, emphasizing the increasing difficulty in detecting features at higher redshifts. Their ratio is the completeness $\xi$; in this example $\xi_{blue}(z=0.7)=0.61$, meaning only 61\% of disks were detected at this redshift. 
+The completness values $\xi_{red}(z),\xi_{blue}(z)$ were then computed in varying bins of redshift for the red sequence and blue cloud galaxies separately. An example calculation of $\xi_{blue}$ in the $z=0.7$ bin is shown in Figure~\ref{fig:inc_subplot}. Each point represents a \ferengi2 galaxy, where the y-axis indicates the value of \ffeatures~measured in the image redshifted to $z=0.7$, and the x-axis indicates the value of \ffeatures~measured in the same galaxy redshifted to $z=0.3$. Disk galaxies are identified as those for which \ffeatures~$\ge0.3$. Since, on average, \ffeatures~decreases for the same galaxy as it is viewed at higher redshifts, the number of galaxies meeting this threshold is generally fewer at higher redshifts than lower redshifts. This is indicated by the dotted lines: galaxies to the right of the vertical dashed line at $\rm f_{features,z=0.3}=0.3$ are identified as disks at $z=0.3$; their sum is considered the ``true'' number of disks, $\rm N_{true}$. Similarly, the galaxies above the horizontal line at $\rm f_{features,z=0.7}=0.3$ are identified as disks at $z=0.7$; their sum is the ``detected'' number of disks at $z=0.7$, or $\rm N_{detected}$. As obvious in the figure, $\rm N_{detected}$ is in general much lower than $\rm N_{true}$, emphasizing the increasing difficulty in detecting features at higher redshifts. Their ratio is the completeness $\xi$; in this example $\xi_{blue}(z=0.7)=0.61$, meaning only 61\% of disks were detected at this redshift. 
 
 \begin{figure}
 \centering
