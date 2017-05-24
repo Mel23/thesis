@@ -3,11 +3,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Introduction}
 \label{chap:intro}
+\epigraph{\textit{The clues to galaxy formation and evolution are hidden in the fine details of galaxy structure.}}{\textit{Peng et al., 2002}}
 
-The Intro
-reminder to include: discussion on wavelength-dependence of morphological classifications. Discuss the transition of star formation coming through in optical, disappearing in near-IR, then reappearing in mid-IR (Galaxy Morphology Buta 2013 and briefly at end of Buta 2010). 
+The Universe has provided astronomers with a single snapshot of its entire history: the night sky. 
 
-Super inspiring first paragraph. Segue: now we'll take a moment to breifly introduce/describe/define important morphologial types. 
+The processes which govern the formation, growth, and death of galaxies are difficult to track. We cannot observe a galaxy from its birth to its death, all we have available is a single snapshot of the Universe. We must rely on other tools to map out the history of a galaxy's complete evolution.
+
+Morphology is one of the most powerful tools for revealing the physical processes that shape the evolution of galaxies. Details of a galaxy's structure are known to be linked with its color (), recent star-formation (), merger history (), and black hole activity (), among others. There is no debate today that morphology is strongly linked to galactic evolution, but the extent to which these relationships hold is still difficult to quantify. Morphological classifications on scales large enough for results to claim statistical significance have been, in the past, unavailable. While expert visual classifications succeeded in accuracy, they lacked in numbers; the opposite has been true for computational methods. 
+
+This research examines the link between morphology and evolution using data from the Galaxy Zoo project, which uses crowd-sourcing to provide a ``best-of-both-worlds'' approach to morphological classifications. To date, over X million volunteers have identified the structures of over Y million galaxies, providing the benefits of both visual inspection and large numbers. With these data, the ways in which morphology drives (or is driven by) a galaxy's evolution has been investigated on a scale previously unachievable.
+ 
 
 \section{Morphological Categorization of Galaxies}
 
@@ -52,16 +57,35 @@ The color of a galaxy is a strong indicator of its recent star formation history
 \caption{Color vs. Absolute Magntitude Diagram, illustrated using SDSS galaxies. In each color-magnitude bin, a random galaxy was selected meeting the criteria defined by that bin.}
 \end{figure}
 
+\subsection{Morphology and Stellar populations}
+
+At the most basic level, morphology is simply a tracer of the observed distribution of light in the galaxy, which in turn traces the distribution of stars, gas, and dust. All light is not emitted equally, however: gas and younger, Population I stars will emit more light in optical and UV wavelengths, while older Population II stars emit more strongly in the infrared. Since these populations may have very different light distributions, there is inherenty some dependence on morphology with the wavelengths within which it's observed. 
+
+Morphologies observed in optical bands are sensitive to pockets of star-formation regions, but other features can be obscured due to dust extinction, particularly those comprised of older stellar populations (such as bars); these can give galaxies an overall ``patchy'' appearance. In contrast, they appear smoother in the near-IR, where the effects of dust extinction are reduced and the older stellar populations dominate. An interesting effect occurs as the observation wavelength moves into the mid-IR: here, dust tends to re-radiate the light absorbed from star-formation regions, re-creating the appearance of the optical-band morphology. There has been debate as to whether the optical and near-IR morphologies are de-coupled to the extent that two classification schemes, one for each wavelength range, is justified (e.g. \citet{Block1999}). Chapter~\ref{chap:ukidss} will examine the optical and near-IR morphologies measured by Galaxy Zoo to add to this debate, as well as investigate whether bars are in fact easier to identify in the near-IR.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/ButaM51.png}
+\caption{Credit: \citet{Buta2013}, Figure 2.51. Spiral galaxy M51 observed in optical B-band (left), near-IR (middle), and mid-IR (right). Visible in the B-band image are patchy regions of star-formation and dust lanes, which become invisible in the near-IR, giving an overall smoother appearance. The mid-IR image shows regions where the dust re-radiates light absorbed from star-forming regions, giving a similar appearance to the optical image. }
+\label{fig:buta51}
+\end{figure} 
+
 \subsection{Morphology and Environment}
 
-A galaxy's environment can also be a predictor of its morphology. The morphology-density relationship, first quantified by \citet{Dressler1980}, observes an abundance of elliptial/early-type morphologies in denser environments \citep{deSouza1982,Postman1984}. Since the merger rate correlates with environment density, it could be suggested that early-types are often the by-products of mergers, as opposed to a stage of isolated secular evolution. 
+A galaxy's environment can also be a predictor of its morphology. The morphology-density relationship, first quantified by \citet{Dressler1980}, observes an abundance of elliptial/ early-type morphologies in denser environments \citep{deSouza1982,Postman1984}. Since the merger rate correlates with environment density, it could be suggested that early-types are often the by-products of mergers, as opposed to a stage of isolated secular evolution. 
 
 There is also evidence of an environmental impact on morphology even in the absence of direct merging. For example, ram pressure \citep{Gunn1972} exerted by the local intracluster medium can severly distort the gas distribution in a galaxy, resulting in asymmetries in the disk (ex. NGC 4402; see also Chapter~\ref{chap:gzh_red_disks}).  
 
 \subsection{Bars}
-\citet{Buta2013} describes barred galaxies as ``the ultimate in galaxy morphology.'' His reasoning is simple: just by observing an image of a bar, it is easy to identify it as a major perturbation in an otherwise stable system. There is a great deal of truth in this; such a disruption will no doubt have profound effects on the fate of its host galaxy. In this way, bars are arguably one of the most important structural features that can shape a galaxy's evolution. 
+\citet{Buta2013} describes barred galaxies as ``the ultimate in galaxy morphology.'' His reasoning is simple: just by observing an image of a bar, it is easy to identify it as a major perturbation in an otherwise stable system. There is a great deal of truth in this; such a disruption will no doubt have significant effects on the fate of its host galaxy. In this way, bars are arguably one of the most important structural features that can shape a galaxy's evolution. 
 
-A key feature of bars is their ability to drive gas from the outer regions of the galaxy to the center \citep{Athanassoula1992,Friedli1993,Ann2005,Kormendy2004,Athanassoula2005,Sellwood1993,Shlosman1989}
+A key feature of bars is their ability to drive gas from the outer regions of the galaxy to the center \citep{Athanassoula1992,Friedli1993,Sellwood1993,Shlosman1989,Ann2005}, which can affect the galaxy's evolution in numerous ways. One such consequence is the formation of a pseudo-bulge \citet{Kormendy2004,Sheth2005}. While this is seen in simulations, this theory is difficult to confirm observationally, as the bar may or not be destroyed by this process \citet{Athanassoula2005}, causing difficulty in identifying a correlation between populations of galaxies with both bars and bulges. 
+
+An increased inflow of gas to the center may also increase central star-formation. Several studies have reported an increase in star-formation rates in the central region of barred galaxies vs. their unbarred counterparts \citep{Hawarden1986,Ho1997}, although this may only be true for strong bars. \citet{Martinet1997} and \citet{Zhou2014} find low rates of star-formation in galaxies with weak bars, suggesting they are unable to trigger significant star formation. Strong bars, however, show both the highest and lowest rates of star-formation. \citep{Sheth2005} found a significant portion of barred galaxies with no molecular gas detected in the nuclear region, which may suggest that for these galaxies, the bar has already driven most of the gas to the nuclear region, where it was consumed by star-formation. Bars, then, seem to play two important roles in the star formation history of their host galaxies - both by increasing star formation, and subsequently driving the quenching process.
+
+Bars also may be one of the mechanisms which enables the fueling of an active galactic nucleus (AGN), whose evolutions are believed to be strongly linked to that of their host galaxies \citep{Schawinski2007, Schawinski2010, Antonini2015, Yang2017, Zubovas2017} (and \citet{Heckman2014} for a comprehensive review). The requirements for onset of accretion onto the central SMBH are still unclear, but \citet{Moles1995} argues that non-axisymmetric components of the gravitational potential may be a necessary condition; a requirement which bars easily satisfy. While simulations have shown bars to provide the necessary inflow to ultimately fuel an AGN \citep{Athanassoula1992,Friedli1993}, observations have shown mixed results. Many have found an excess of AGN in barred samples of galaxies \citep{Knapen2000,Oh2012}, while others find no difference \citep{Ho1997,Mulchaey1997,Cheung2015}. A discussion of the discrepencies between these results, along with my own investigation of this topic, is the subject of Chapter~\ref{chap:baragn}. 
+
+The examples listed are only a few of the well-known relationships between the evolution of galaxies and their morphologies. There is little doubt amongst astronomers that morphology and galactic evolution are linked; however, as evident in these examples, some links are still inconclusive and the research of these relationships is still ongoing. Results are becoming more defined now, as methods to classify galaxies according to their morphologies are consantly improving. Some of the results listed from previous decades suffered from low-sample statistics, where it was only feasible to visually classify handfuls of galaxies in a single study. Today, more robust methods are able to categorize galaxies morphologically in a fraction of the time once required. The next section will explore the evolution of classification methods used to obtain galaxy morphologies for such studies. 
 
 
 \section{Methods for morphological classification}
