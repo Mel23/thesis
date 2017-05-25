@@ -15,29 +15,29 @@ The grueling task of classifying only a small fraction of the entire SDSS main s
 \begin{figure}
 \centering
 \includegraphics[width=.8\textwidth]{figures/GZ1Interface.png}
-\caption{GZ1Interface}
+\caption{Example of the interface seen by users of Galaxy Zoo 1. On the left is an image of a galaxy from the SDSS main sample. On the right are possible features the user may identify about the galaxy by clicking the relevant option(s). Once complete, they are shown another galaxy.}
 \label{GZ1_Interface}
 \end{figure}
 
 In just the first day of the site being live, 20,000 classifications were coming in each hour - a rate much faster than the developers had ever expected. In less than a year, the entire SDSS main sample was classified by an average of 38 volunteers per galaxy. Following GZ1 data release paper published in April, 2008 \citep{Lintott2008}, over a dozen scienific publications were released which made use of the morphological classifications \footnote{https://www.zooniverse.org/about/publications}. Significant results included the discovery of a large population of passive red spirals in the local universe \citep{Masters2010}, the existance of star-forming blue ellipticals \citep{Schawinski2009b}, ``green peas,'' a new class of galaxies exhibiting extremely high star formation \citep{Cardamone2009}, and ``Hanny's Voorwerp,'', the first example of AGN-photoionized clouds detected near galaxies no longer actively hosting AGN \citep{Lintott2009}.
 
--Classifying galaxies by morphology *independently* of proxies like color or mass is important because the morphology traces the dynamics while color traces stellar content, and these are only correlated on average and in the local universe. 
-cite some motivations for crowdsourcing (ie Raddick; discussion of authentic scientific participation and learning)
-
-
+It is also worth highlighting the educational impact of a citizen science approach to data collection. Science education research has shown that active participation is a critical component in scientific learning. \citet{Michaels2008} define four ``strands'' of skills that students must obtain to be considered scientifically proficient, the fourth being ``participating productively in science.'' Citizen science provides both students and the general public to actively participate in science without having to already be experts in the field, and it has been obvious so far that the volunteers are enthusiastic to do so. \citet{Raddick2010} investigated the motivations driving the participation of GZ users through surveys and interviews, and found the desire to contribute significantly to important research was one of the primary examples (other motivations including enjoying the beauty of the galaxy images and a general interest in astronomy). 
 
 
 \begin{figure}
 \centering
 \includegraphics[width=0.95\textwidth]{figures/gz_interface_1.png}
-\caption{Interface}
+\caption{Example of the interface seen by users of Galaxy Zoo 2. On the left is an image of a galaxy, on the right are possible features the user may identify about the galaxy by clicking the relevant option. Unlike GZ1, subsequent questions appear about the same galaxy depending on their answers to the preceding questions, following a decistion tree format (see Figure~\ref{fig:decisiontree} for a visual of all possible pathways.)}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.95\textwidth]{figures/gzh_decision_tree.pdf}
+\label{fig:decisiontree}
 \caption{Decision tree used in the Galaxy Zoo:Hubble project. The colors indicate the ``Tier'' level of the question. Gray represents 1st-Tier; these are asked of all users. Green are 2nd-Tier; these are only asked after responding to a 1st-Tier question, and so on. This tree is identical to GZ2 and UKIDSS, except for the addition of the clumpy questions T12-T18.}
 \end{figure}
+
+The remainer of this Chapter will outline the common practices used to turn Galaxy Zoo data ``from clicks to classifications,'' through the use of consistency-weighting the user votes and adjusting vote fractions for redshift bias. 
 
 \section{Galaxy Zoo Data Reduction}
 \subsection{User weighting by consistency}
@@ -68,9 +68,11 @@ For samples of galaxies limited to the local universe ($z\lesssim0.2)$, there is
 
 The source of this bias comes from the apparent size and brightness of the images of the galaxies being classified, which are strongly affected by redshift. Images of more distant galaxies appear smaller and dimmer, and therefore finer features are simply more difficult to detect. This sort of classification bias is a problem with any morphological classification, whether it be expert classifiers, automated dection, or crowd-sourced visual inpsection.
 
-This section will describe the methods used to correct this type of classification bias for galaxies in the local Universe, where no true morphological evolution is a factor. Beyond the local Universe this assumption is no longer valed, so techniques implimenting classifications of artificially-redshifted galaxies are used for calibration; these are described in detail in Chapter~\ref{chap:ferengidebiasing}. 
+This section will describe the methods used to correct this type of classification bias for galaxies in the local Universe, where no true morphological evolution is a factor. Beyond the local Universe this assumption is no longer valed, so techniques implimenting classifications of artificially-redshifted galaxies are used for calibration; these are described in detail in Chapter~\ref{chap:ferengi}. 
 
 \subsubsection{Debiasing Galaxy Zoo 2: W13 method}
+
+The first technique for debiasing Galaxy Zoo classifications was developed by \citet{Bamford2009}. This method was used again for the GZ2 classifications, with slight modifications to account for 1) the GZ2 classifications were derived from votes through a decision tree, rather than a single response per galaxy, and 2) answers to tasks in GZ2 are not all binary as they were with GZ1. This section will describe the technique in the context of GZ2, noting that the physical assumptions used are the same in both methods.  
 
 The debiasing technique used in GZ2 assumed firstly that galaxies with similar brightnesses and sizes should, on average, share similar mixes of morphologies at any redshift. Using this assumption, galaxies were grouped into bins of absolute magnitude $M_r$, Petrosian effective radius $R_{50}$, and redshift. For each task in the GZ2 decision tree, the vote fractions for each response in any size/magnitude bin were adjusted so that their average matched the average vote fraction of its lowest-redshift bin. This method is described in detail in \citet{Willett2013}, but the main approach is as follows:
 
@@ -95,8 +97,8 @@ Figure~\ref{fig:gz2debiased} shows the local ($z=0$) ratios of $f_i/f_j$ for the
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{figures/rh_placeholder.png}
-\caption{Placeholder - will make original later. Shows results of 2 debiasing methods for the first 3 tasks in GZ2}. 
+\includegraphics[width=\textwidth,trim={0cm 2.7cm 0cm 0cm},clip]{figures/GZvotefractions.pdf}
+\caption{Credit: \citet{Hart2016}, Figures 8 and 9. Plotted are the fraction of galaxies with vote fractions greater than 0.5 for each reponse to the first 3 tasks, where the solid lines are the raw vote fractions, dotted are the W13 debiased vote fractions, and dashed-dotted lines are the debiased with the H16 method. Without the debiasing, the number of galaxies with a ``smooth'' majority vote fraction increashes sharply from $z=0.04$ to $z=0.8$, a range assumed to be local enough such that no true morphological evolution should be observed. Both debiasing methods work to keep the fractions constant over this redshift range, although the H16 method is more effective at higher-tier questions.}
 \label{fig:gz2debiasingresults}
 \end{figure}
 
@@ -113,15 +115,15 @@ A new debiasing technique (hereafter H16) was developed by Galaxy Zoo member Ros
 
 The second limitation of the W13 method is that while it effectively corrects the vote fractions for any Task so that the average morphology is constant as a function of redshift, it does not account for the \emph{distribution} of morphologies at low redshift. This produces good results when the corrected values are used for population studies, where the percentage of galaxies exhibiting a particular morphology are desired, but may not always reproduce accurate \emph{individual} vote fractions. The R16 method instead corrects the high redshift vote fractions based on the change in distribution of vote fractions observed at low redshift, rather than comparing to only the average values. The first step of this method is shown in the right panel of Figure~\ref{fig:voronoi}. For the low redshift bin of a given task, the cumulative distribution of vote fractions for each response is fit with a continuous function, which is used as the baseline distribution (similar to teh baseline average votes in the W13 method.) The vote fractions making up the cumulative distributions at higher redshifts are then adjusted as needed to match the low redshift distribution as closely as possible.
 
-Results of this method are shown and compared to W13 in Figure~\ref{fig:gz2debiasingresults}. The top row shows the average vote fractions as a function of redshift for the raw (solid lines), W13 debiased (dashed lines), and R15 debiased data (dotted lines). Both methods are succesful in stabalizing the average morphologies across redshift. The bottom row shows the distribution of vote fractions of a low-redshift bin and high redshift bin. It can be seen here that while both methods can reproduce the average vote fractions at low redshift, the R15 method is more succesful in reproducing the distribution of votes at low redshift.  
+Results of this method are shown and compared to W13 in Figure~\ref{fig:gz2debiasingresults}. Plotted on the top panel are the fraction of galaxies with vote fractions greater than 0.5 for each reponse to the first three tasks, where the solid lines are the raw vote fractions, dotted are the W13 debiased vote fractions, and dashed-dotted lines are the debiased with the H16 method.  Both methods are succesful in stabalizing the average morphologies over this local redshift range. The bottom panel shows the distribution of vote fractions of a low-redshift bin (solid purple histogram) and high redshift bin, again for the raw votes (black solid line), W13 method (light dashed red), and H16 method (solid dashed red). It can be seen here that while both methods can reproduce the average vote fractions at low redshift, the R15 method is more succesful in reproducing the distribution of votes at low redshift. In this thesis, W13 debiased vote fractions were used in Chapter~\ref{chap:baragn} to conduct the study examining the relationship between bars and AGN using GZ2 data, specifically votes from the first three Tasks in the tree. Chapter~\ref{chap:ukidss} examines a smaller data set, the UKIDSS sample which contains 70,000 galaxies, much smaller than GZ2. For the reasons given in this section, the H16 method was used to debiase the votes used in that study. 
  
 
 
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{figures/voronoi_placeholder.png}
-\caption{Placeholer - make my own later. Left shows how voronoi binning is done; compare to rectangular binning in W13. Right is cumulative distribution of some vote fraction at low and high redshift.}
+\includegraphics[width=\textwidth,trim={.5cm .25cm .5cm .5cm},clip]{figures/Voronoi.pdf}
+\caption{Credit: \citet{Hart2016}, Figures 5 and 6. \textbf{Left:} Voronoi bin distribution for the ``$>4$'' answer to the spiral arm question in GZ2. Each bin is further divided into Voronoi bins, such that each final $R_{50}-M_{r}-z$ bin contains at least 50 galaxies. \textbf{Right:} Cumulative distribution of vote fractions (in log-space) of a single $R_{50}-M_{r}$ bin, split between a high redshift bin (red dashed line) and a low redshift bin (blue solid line). The debiasing method adjusts the high-redshift vote fractions to match the distribution of the low-redshift distribution. }
 \label{fig:voronoi}
 \end{figure}
 
