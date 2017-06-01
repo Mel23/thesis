@@ -28,15 +28,20 @@ Analysis of the color-morphology relationship in the local Universe has revealed
 
 \subsection{Quenching Mechanisms}
 \label{ssec:qmechs}
-Define quenching - any process which causes SF to cease, other than natural isolation. 
+An isolated galaxy will eventually cease to form new stars as it naturally exhausts its limited supply of gas. The time-scale for complete consumption can be estimated from the amount of gas in a typical galaxy and the rate at which it is consumed through star formation: $\tau \sim M_{gas}/\dot{M}_{gas}$ \citep{Larson1980}, and is expected to range from 1-3 Gyr. Most galaxies do not exist in such isolation; the exchange of matter in the galaxy due to its surroundings can disrupt and often accelerate the depletion of a galaxy's gas reservoir. Quenching is defined as any process which drives the shutting-down of star formation in this way. This section will introduce different proposed quenching mechanisms, some of which are internal (driven by the galaxy's structure or components), or external (driven by direct influence of the surrounding environment). 
+
 \subsubsection{Ram Pressure Stripping}
 
-As a galaxy moves through the intracluster medium (ICM), it experiences ram pressure $P_{ram} = \rho_e v^2$, where $\rho_e$ is the density of the ICM and $v$ is the velocity of the galaxy \citep{Gunn1972}. The force per area required to hold gas onto the traveling galaxy is $F/A = 2\pi G \sigma_{s} \sigma_{g}$, where $\sigma_{s}$ and $\sigma_{g}$ are the star and gas surface densities, respecitively. If a galaxy is moving fast enough, or the ICM density is large enough, the ram pressure can exceed this force and consequently rip the gas from the galaxy; this process is known as ram pressure stripping. Evidence of this effect is seen observationally in asymmetries of the disk in spirals (a common example is NGC 4402, which has a bowed appearance and a one-sided concentration of dust, believed to be the effects of the galaxy struggling to hold onto gas on the outer regions of the disk) and truncated radial density profiles. Simulations \citep{Steinhauser2016} show that extreme cases of ram pressure stripping can completely strip a galaxy of its cold gas, causing a rapid quenching on timescales of a few hundred Myr. More mild cases, on the other hand, can actually temporarily increase star formation, which quickly uses up the available cold gas, and eventually quenches the galaxy on timescales similar to natural isolation, $\sim 1Gyr$. \citet{Fillingham2016} find a mass dependence on the efficiency of this process: they find RPS to be very efficient and rapid for galaxies $M_{*} = 10^{8-9}M_{\odot}$ for a range of halo host properties, suggesting RPS may be the dominant quenching mechanism for low-mass galaxies.  
+As a galaxy moves through the intracluster medium (ICM), it experiences ram pressure $P_{ram} = \rho_e v^2$, where $\rho_e$ is the density of the ICM and $v$ is the velocity of the galaxy \citep{Gunn1972}. The force per area required to hold gas onto the traveling galaxy is $F/A = 2\pi G \sigma_{s} \sigma_{g}$, where $\sigma_{s}$ and $\sigma_{g}$ are the star and gas surface densities, respecitively. If a galaxy is moving fast enough, or the ICM density is large enough, the ram pressure can exceed this force and consequently rip the gas from the galaxy; this process is known as ram pressure stripping. Evidence of this effect is seen observationally in asymmetries of the disk in spirals (a common example is NGC 4402, which has a bowed appearance and a one-sided concentration of dust, believed to be the effects of the galaxy struggling to hold onto gas on the outer regions of the disk) and truncated radial density profiles. Simulations \citep{Steinhauser2016} show that extreme cases of ram pressure stripping can completely strip a galaxy of its cold gas, causing a rapid quenching on timescales of a few hundred Myr. More mild cases, on the other hand, can actually temporarily increase star formation, which quickly uses up the available cold gas, and eventually quenches the galaxy on timescales similar to natural isolation, $\sim$ 1 Gyr. \citet{Fillingham2016} find a mass dependence on the efficiency of this process: they find RPS to be very efficient and rapid for galaxies $M_{*} = 10^{8-9}M_{\odot}$ for a range of halo host properties, suggesting RPS may be the dominant quenching mechanism for low-mass galaxies.  
 
-\subsubsection{Strangulation}
-\subsubsection{Harassment}
+\subsubsection{Strangulation and Harassment}
+
+Even if the ram pressure exerted by the ICM is not strong enough to completely remove all of the gas from a galaxy, it may be just strong enough to strip the outer hot gas which would have otherwise cooled and replenished the cold gas reservoir. This process is appropriately defined as strangulation, where star formation ceases after the inital cold gas is used up \citep{Larson1980}. More frequent and violent encounters can increase star-formation in a similar process known as harassment \citep{Moore1996}. These can lead to a compression of the cold gas causing a temporary and intense burst of star formation, depleting it completely on a time scale of $\sim$1-2Gyr \citep{Kawata2007}. \citet{Moore1999} show through simulations that harassment can be powerful enough to alter the morphology of low-mass, low-surface brightness galaxies. 
+
 \subsubsection{Mass quenching}
 \subsubsection{AGN feedback}
+AGN are believed to play a strong role in the regulation of star-formation in their host galaxies via AGN \emph{feedback}, whereby accretion onto the central SMBH generates strong outflows of energetic material and hard radiation; these AGN-driven winds may then terminate star-formation by heating the gas or expelling it completely from the galaxy. This effect was first proposed as an important quenching mechanism through the development of theoretical models aiming to reproduce the observed local-Universe luminosity function. The bright end, where there is a sharp break in the observed number density of highly luminous galaxies, tends to only be reproducable in models which incorporate AGN feedback to suppress star-formation as galaxies build up their mass \citep{Benson2003, DiMatteo2005, Bower2006, Croton2006, Somerville2008}. One of the leading observational arguments for this effect is the high fraction of AGN in the green valley \citep{Martin2007a,Schawinski2010}, suggesting that AGN may be responsible in part for transitioning galaxies from the blue cloud to the red sequence. \citet{Smethurst2016} found strong evidence for rapid and recent quenching through an analysis of star formation histories of a large population of AGN hosts, indicating that AGN-feedback can play a strong role in the quenching process.  
+
 \subsubsection{Mergers}
 
 \section{Sample Selection}
@@ -122,10 +127,28 @@ Figure~\ref{fig:xi_v_sb} shows completeness as a function of redshift and surfac
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth,trim={2cm 1cm 2cm 1cm},clip]{figures/completenessmoneyplot.pdf}
+\includegraphics[width=.75\textwidth,trim={0cm 1cm 1cm 1cm},clip]{figures/completenessmoneyplot.pdf}
 \caption{Completeness $\xi$ as a function of redshift moneyplot}
 \label{fig:notlinear}
 \end{figure}
 
 
- 
+\section{Simple model}
+
+\begin{flalign}
+&\frac{dN_{BD}}{dt}\Big\rvert_{m} = \Big(-r_{BD_{m} \rightarrow RD_{m}} - r_{BD_{m} \rightarrow RE_{2m}}\Big)N_{BD_{m}} -\alpha(m) sSFR(t) \nonumber  \\
+&\frac{dN_{RD}}{dt}\Big\rvert_{m} = + r_{BD_{m} \rightarrow RD_{m}}N_{BD_{m}} - r_{RD_{m} \rightarrow RE_{2m}}N_{RD_{m}} \nonumber \\
+&\frac{dN_{RE}}{dt}\Big\rvert_{2m} = + r_{BD_{m} \rightarrow RE_{2m}}N_{BD_{m}} + r_{RD_{m} \rightarrow RE_{2m}}N_{RD_{m}} + \kappa_m N_{RE_{2m}} \nonumber  \\  
+\label{eqn:rateeqs}
+\end{flalign}
+
+\begin{flalign}
+&\alpha(m) = \frac{d~\rm log~\phi}{d~\textrm{log}~m} = (1+\alpha_s) - \frac{m}{M^{*}}\nonumber  \\
+&sSFR(m,t) = 2.5\Big(\frac{t}{3.5~Gyr}\Big)^{-2.2}  \nonumber  \\  
+\label{eqn:as}
+\end{flalign}
+
+using the Schechter function  $\phi(m) = \phi^*(m/M^*)^{1+\alpha_s}e^{-m/M^*}$ using parameters measured by \citet{Peng2010}
+
+
+
