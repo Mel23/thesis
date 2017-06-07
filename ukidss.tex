@@ -18,7 +18,7 @@ The extent to which the morphologies of the younger and older stellar population
 
 The advent of larger surveys incorporating near and mid-IR detectors enabled morphological comparisons between the two wavelength regimes on a much grander scale than had previously been achieved. New results contradicted those of the previous case-studies: in general, IR morphology was found to be well-correlated with optical morphology in larger samples of galaxies. \citet{Eskridge2002} compared near-IR H-band (1.65$\mu$m) Hubble-type classifications to B-band in a sample of 205 nearby spiral galaxies from the Ohio State University Bright Spiral Galaxy Survey (OSUBSGS). Applying deVaucouler's classification system, they found an overall good correlation between the two morphologies, but on average galaxies from Sa through Scd appeared one T-type earlier in the H band than in the B band. In the IR images the bulge tended to appear more prominent and the spiral arms less knotty, which resulted in the slightly earlier classifications. For the earliest (optically S0/a and Sa) and latest-type galaxies (optically Scd through Sm), no difference in morphologies was found. This is an expected result for the earlier-types, since these have little ongoing star formation and very little dust, so it is expected that both optical and IR morphologies are dominated by old stars. This result is less intuitive for the later-type galaxies, as these are dominated by ongoing star formation. However, these galaxies are defined as having very weak or nonexistant bulges and poorly defined spiral structure. Since the main driver in the differences in morphology across wavebands was found in the intermediate spirals to be the relative prevalance of a bulge and difference in contrast and appearance of spiral arms, galaxies lacking these features should not, in fact, be expected to look different in the IR than the optical. 
  
-\citet{Buta2010} obtained similar results comparing optical and mid-IR (3.6 $\mu$m) images from the \textit{Spitzer} Survey of Stellar Structure in Galaxies ($\rm S^4G$, \citet{Sheth2010}) in a large sample of 2,331 spiral galaxies. Like \citet{Eskridge2002}, the optical and IR classifications were very well correlated, with the most significant differences occuring for S0/a to Sc galaxies, where the 3.6 $\mu$m were on average slightly earlier than the B-band classifications.
+\citet{Buta2010} obtained similar results comparing optical and mid-IR (3.6 $\mu$m) images from the \textit{Spitzer} Survey of Stellar Structure in Galaxies ($\rm S^4G$, \citet{Sheth2010}) in a sample of 207 spiral galaxies. Like \citet{Eskridge2002}, the optical and IR classifications were very well correlated, with the most significant differences occuring for S0/a to Sc galaxies, where the 3.6 $\mu$m were on average slightly earlier than the B-band classifications.
 
 %Bars! 
 %invisible in optical, visible in IR examples
@@ -193,10 +193,19 @@ The diagram on the right shows which of these paths SONIs tend to take, resultin
 
 
 \section{Bar Fraction}
-This section will focus on the properties of bars observed in the two wavelengths: first by measuring the fraction of bars detected, and secondly the relative strengths. To avoid possible confusion in this portion of the text, two similar quanities are defined explicitely here: the \emph{bar fraction} is defined as the ratio of barred galaxies to total galaxies in a sample, and $\rm f_{bar}$ is the \emph{bar vote fraction}, which is the fraction of users who detected a bar in an image of an \emph{individual galaxy}.
+A clean separation of barred and unbarred galaxy populations is required to properly analyze the various effect bars may have on their host galaxies. If a significant portion of bars are better detected in one waveband than another, both classifications should be incorporated to improve the separation of barred and unbarred samples. This section will investigate whether this should be a necessary process for bar population studies by computing the relative numbers of bars detected in optical and infrared imaging. To avoid possible confusion in this portion of the text, two similar quanities are defined explicitely here: the \emph{bar fraction} is defined as the ratio of barred galaxies to total galaxies in a sample, and $\rm f_{bar}$ is the \emph{bar vote fraction}, which is the fraction of users who detected a bar in an image of an \emph{individual galaxy}.
 
-To measure the fraction of barred galaxies, the sample is first limited to galaxies for which there were at least 20 answers to the question in the decision tree that asks, ``Is there a sign of a bar feature through the center of the galaxy?'' This cut serves two purposes: first, it provites good statistics in computing $\rm f_{bar}$ for each galaxy (see Figure stats). Second, for the UKIDSS sample which has at maximum 40 total classifications per galaxy, this places an indirect cut on the preceding vote fractions $\rm f_{features} \ge 0.5$ and $\rm f_{not~edge~on} \ge 0.5$. This intrinsically limits the sample to featured, not edge-on galaxies, which is precisely the sample desired for computing the bar fraction, as bars are nonexistant in elliptical galaxies, or indetectable in highly-inclined edge-on galaxies. For the GZ2 sample, however, a significant portion of the galaxies have between 40-60 total classifications; so, a cut of $\rm N_{bar} \ge 20$ would not guarantee the same minima for the preceding vote fractions. Therefore direct cuts of $\rm f_{features} \ge 0.5$ and $\rm f_{not~edge~on}$ are additionally placed on the GZ2 classifications to ensure the same sample selection for both wavelengths.  
+Barred galaxies in the GZ2 and UKIDSS samples are identified using the same prescription described in Chapter~\ref{chap:baragn} \citep{Galloway2015}. Cuts are placed on $f_{\rm features} \ge 0.35$ and $f_{\rm not edge-on} \ge 0.6$ to limit the sample to featured, not edge-on galaxies. An additional cut is placed on the number of people to answer the bar question $N_{\rm bar}\ge 10$ to ensure adequate statistics in calculating the bar vote fraction $f_{\rm bar}$. Of the galaxies meeting these criteria, bars are then defined as present in galaxies with $f_{\rm bar}\ge 0.3$.  
 
+%To measure the fraction of barred galaxies, the sample is first limited to galaxies for which there were at least 10 answers to the question in the decision tree that asks, ``Is there a sign of a bar feature through the center of the galaxy?'' This cut serves two purposes: first, it provides adequate statistics in computing $\rm f_{bar}$ for each galaxy (see Figure stats). Second, for the UKIDSS sample which has at maximum 40 total classifications per galaxy, this places an indirect cut on the preceding vote fractions $\rm f_{features} \ge 0.25$ and $\rm f_{not~edge~on} \ge 0.25$. This intrinsically limits the sample to featured, not edge-on galaxies, which is precisely the sample desired for computing the bar fraction, as bars are nonexistant in elliptical galaxies, or indetectable in highly-inclined edge-on galaxies. For the GZ2 sample, however, a significant portion of the galaxies have between 40-60 total classifications; so, a cut of $\rm N_{bar} \ge 10$ would not guarantee the same minima for the preceding vote fractions. Therefore direct cuts of $\rm f_{features} \ge 0.5$ and $\rm f_{not~edge~on}$ are additionally placed on the GZ2 classifications to ensure the same sample selection for both wavelengths.  
+
+
+\begin{figure}
+\centering
+\includegraphics[width=.75\textwidth]{figures/bar_bar_bar.pdf}
+\caption{The middle bar displays the 421 galaxies which are classified as barred in both GZ2 and UKIDSS. To the left shows the number of galaxies classified as barred in GZ2 but \emph{not} UKIDSS (blue). From left to right, these are broken down by those who changed classifications because they followed the smooth path, featured, edge-on path, and featured, not edge-on path (but with insufficient votes at the bar question to allow a barred classification), respectively. To the right shows the number of galaxies classified as barred in UKIDSS but \emph{not} GZ2 (red). These are broken down in the same way as described for the GZ2-classified bars. }
+\label{fig:barbarbar}
+\end{figure}
 
 \begin{figure}
 \centering
@@ -205,39 +214,37 @@ To measure the fraction of barred galaxies, the sample is first limited to galax
 \label{fig:sankeybar}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=.75\textwidth]{figures/bar_bar_bar.pdf}
-\caption{The middle bar displays the 421 galaxies which are classified as barred in both GZ2 and UKIDSS. To the left shows the number of galaxies classified as barred in GZ2 but \emph{not} UKIDSS (blue). From left to right, these are broken down by those who changed classifications because they followed the smooth path, featured, edge-on path, and featured, not edge-on path (but with insuficient votes at the bar question to allow a barred classification), respectively. To the right shows the number of galaxies classified as barred in UKIDSS but \emph{not} GZ2 (red). These are broken down in the same way as described for the GZ2-classified bars. }
-\label{fig:barbarbar}
-\end{figure}
+Figure~\ref{fig:barbarbar} shows the number of barred galaxies in GZ2 and UKIDSS. Of the 1,102 total bars detected, 672 (61\%) were detected in UKIDSS, and 899 (81\%) were detected in GZ2. The optical data recovers a larger portion of the total bars than the IR data, yet still fails to detect 20\% of them. Due to the structure of the Galaxy Zoo decision tree, there are two ways in which a galaxy would fail to achieve a bar classification: first, its bar vote fraction $f_{\rm bar}$ can fail to meet the threshold cut of $f_{\rm bar}\ge0.3$; these galaxies have reached the bar question and thus are seen as face-on disks, but no bar is visible. Second, the bar question may never be asked of the galaxy in the first place if it is classified as ``smooth'' via the first question, or, classified as ``featured'' but also ``edge-on'' in the second. For galaxies which are classified as barred in one waveband but not the other, it may be helpful to discern via which scenerio they are changing classifications. In the first case, the images would look mostly similar in terms of the overall structure, but the bar would too weak, or perhaps even be masked, to meet the $f_{\rm bar}$ threshold required. In the second case, the images must transform significantly to follow entirely different paths through the tree. 
+
+Figure~\ref{fig:sankeybar} shows path followed by the barred galaxies. On the left is the path of the 672 UKIDSS-barred galaxies through the GZ2 classifications, on the right is the path of the 899 GZ2-barred galaxies through the UKIDSS classifications. For the UKIDSS-barred galaxies, the majority (93\%) of them maintain the same featured, not edge-on morphologies in both wavebands, but change classifications once they reach the bar question. For the GZ2-barred galaxies, a larger fraction of them change classifications earlier, with 16\% of them being classified as smooth from the first question. It is also slightly more common for these galaxies to be re-classified as edge-on in the GZ2 track, but the majority (79\%) are consistent in their featured, not edge-on morphologies, and 34\% of these change classifications from GZ2-barred to UKIDSS-unbarred at the bar question. The numeric breakdown of these distributions is visualized in Figure~\ref{fig:barbarbar}, and example images for each category are shown in Figures~\ref{fig:ubarnogbar} and ~\ref{fig:gbarnoubar}.
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{figures/ubar_vs_gbar.pdf}
-\caption{Dotted lines indicate the threshold for bar classification; $f_{bar}>0.3$. Galaxies shown had at least 20 people answering the bar question. }
-\label{fig:ubarvgbar}
-\end{figure}
-
-Figure~\ref{fig:ubarvgbar} compares $\rm f_{bar}$ measured in the UKIDSS and GZ2 images for galaxies which were classified as featured and not edge-on in both samples. In this study, any galaxy for which $\rm f_{bar} \ge 0.3$ is classified as barred. The dashed lines in the figure mark this threshold, such that galaxies to the right of the vertical dashed line were classified as barred in the optical images, and those above the horizontal dashed line were classified as barred in the IR images. Four regions can be defined in this way: The top right region of the plot represents galaxies classified as barred in both wavelenths, the bottom right shows those which are unbarred in both, the top left shows those which are barred in the IR but not the optical, and the bottom right shows those which are barred in the optical but not IR.  
-
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth,trim={5cm 1cm 5cm 1cm},clip]{figures/ubar_no_gzbar.pdf}
-\caption{Galaxies classified as barred in optical GZ2 and unbarred in infrared UKIDSS.}
+\includegraphics[width=\textwidth,trim={0cm 1cm 0cm 1cm},clip]{figures/ubar_no_gzbar.pdf}
+\caption{Galaxies classified as barred in UKIDSS (top row, IR images) and unbarred GZ2 (bottom row, optical images). The left column is an example of a galaxy which was not classified as barred in GZ2 because it followed the smooth GZ2 path, the middle followed the featured, edge-on path, and the right followed the featured, not edge-on path.}
 \label{fig:ubarnogbar}
 \end{figure}
 
+
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth,trim={5cm 1cm 5cm 1cm},clip]{figures/gzbar_no_ubar.pdf}
-\caption{Galaxies classified as barred in infrared UKIDSS and unbarred in optical GZ2.}
+\includegraphics[width=\textwidth,trim={0cm 1cm 0cm 1cm},clip]{figures/gbar_no_ubar.pdf}
+\caption{Galaxies classified as unbarred in UKIDSS (top row, IR images) and barred GZ2 (bottom row, optical images). The left column is an example of a galaxy which was not classified as barred in UKIDSS because it followed the smooth UKIDSS path, the middle followed the featured, edge-on path, and the right followed the featured, not edge-on path.}
 \label{fig:gbarnoubar}
 \end{figure}
 
 
 
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/ubar_vs_gbar.pdf}
+\caption{GZ2 vs UKIDSS bar strengths of 1,107 featured, not edge-on galaxies measured by $f_{\rm bar}$. Galaxies shown must have 10 people answer the bar question, $f_{\rm features}\ge0.35$ and $f_{\rm not~edge-on}\ge0.6$ in both samples. The dotted white lines indicate the threshold value for bar classification $f_{\rm bar}\ge0.3$; the top-right region therefore displays the fraction of galaxies classified as barred in UKIDSS and GZ2, the bottom left are those classified as unbarred in both, the top-left are UKIDSS-barred and GZ2-unbarred, and the bottom-right are GZ2-barred and UKIDSS-unbarred. Most galaxies have consistent classifications (76\% are either barred in both or barred in neither), 11\% are barred in UKIDSS but not GZ2 (top left) and 13\% are barred in GZ2 but not UKIDSS (bottom right). } 
+\label{fig:ubarvgbar}
+\end{figure}
+
+Most galaxies which change bar classifictions do so \emph{at} the bar question, rather than tending to follow entirely different pathways through the GZ decision tree. Here the change will be analyzed in more detail: Figure~\ref{fig:ubarvgbar} compares $f_{\rm bar}$ measured in UKIDSS and GZ2 for galaxies which were consistently classified as featured and not edge-on in both samples. White dashed lines mark the threshold value for bar identification, $f_{\rm bar}\ge 0.3$. Galaxies to the right of the vertical dashed line were classified as barred in the optical images, and those above the horizontal dashed line were classified as barred in the IR images. Four regions can be defined in this way: The top right region of the plot represents galaxies classified as barred in both wavebands, the bottom right shows those which are unbarred in both, the top left shows those which are barred in the IR but not the optical, and the bottom right shows those which are barred in the optical but not IR.  
+
+The bar vote fraction $f_{\rm bar}$ is well-correlated in both projects. The data follow a mostly 1:1 relationship with an average scatter of $\Delta f_{\rm bar} = +/- 0.1$, resulting in consistent classfications for the majority of galaxies, with 42\% being barred in both and 23\% being unbarred in both. 11\% are barred in UKIDSS but not GZ2 (top left). These tend to not be very strongly barred in UKIDSS, with typical bar vote fractions of 0.3-0.6. Since many of these only barely pass the threshold cut, statistical error is likely a partial driver of the different classifications. 13\% are barred in GZ2 but not UKIDSS; these have a wider spread of bar vote fractions in GZ2, up to $f_{\rm bar,GZ2}\sim0.9$. This change is much more drastic, indicating that the change in classifications in these cases is more driven by a significant differences in the appearance of the images. 
 
 \section{Discussion}
 
@@ -249,7 +256,9 @@ The main findings of this analysis are as follows:
 
 \item For galaxies whose spiral arms are detected in both optical and IR images, the IR classifications are slightly earlier than the optical, driven mostly by a stronger appearance of the bulge and partly by a looser appearance of spiral arms. 
 
-\item A significant fraction (29\%) of galaxies were classified as having spiral arms in the optical images but not the infrared images. The majority of these (72\%) instead appeared elliptical, 7\% appeared featured but edge-on, and 19\% appeared featured and face-on. 
+\item A significant fraction (29\%) of galaxies were classified as having spiral arms in the optical images but not the infrared images. The majority of these (72\%) instead appeared elliptical, 7\% appeared featured but edge-on, and 19\% appeared featured and face-on.
+
+\item For galaxies which can be identified as featured and not edge-on, a majority of 76\% galaxies have consistent barred or unbarred classification in opitcal and infrared classifications. Galaxies which were barred in UKIDSS but not GZ2 tended to be weakly so, such that statistical error is likely the driving factor between the mis-matched classifications. It is more common for bars to be detected in GZ2 but not UKIDSS due to genuine differences in the images, where separation between features were more distinct in the optical and smoothed-over in the IR. 
 
 
 \end{itemize}
