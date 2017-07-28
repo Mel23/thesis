@@ -38,16 +38,19 @@ As a galaxy moves through the intracluster medium (ICM), it experiences ram pres
 
 Even if the ram pressure exerted by the ICM is not strong enough to completely remove all of the gas from a galaxy, it may be just strong enough to strip the outer hot gas which would have otherwise cooled and replenished the cold gas reservoir. This process is appropriately defined as strangulation, where star formation ceases after the inital cold gas is used up \citep{Larson1980}. More frequent and violent encounters can increase star-formation in a similar process known as harassment \citep{Moore1996}. These can lead to a compression of the cold gas causing a temporary and intense burst of star formation, depleting it completely on a time scale of $\sim$1-2Gyr \citep{Kawata2007}. \citet{Moore1999} show through simulations that harassment can be powerful enough to alter the morphology of low-mass, low-surface brightness galaxies. 
 
-\subsubsection{Mass quenching}
 \subsubsection{AGN feedback}
 AGN are believed to play a strong role in the regulation of star-formation in their host galaxies via AGN \emph{feedback}, whereby accretion onto the central SMBH generates strong outflows of energetic material and hard radiation; these AGN-driven winds may then terminate star-formation by heating the gas or expelling it completely from the galaxy. This effect was first proposed as an important quenching mechanism through the development of theoretical models aiming to reproduce the observed local-Universe luminosity function. The bright end, where there is a sharp break in the observed number density of highly luminous galaxies, tends to only be reproducable in models which incorporate AGN feedback to suppress star-formation as galaxies build up their mass \citep{Benson2003, DiMatteo2005, Bower2006, Croton2006, Somerville2008}. One of the leading observational arguments for this effect is the high fraction of AGN in the green valley \citep{Martin2007a,Schawinski2010}, suggesting that AGN may be responsible in part for transitioning galaxies from the blue cloud to the red sequence. \citet{Smethurst2016} found strong evidence for rapid and recent quenching through an analysis of star formation histories of a large population of AGN hosts, indicating that AGN-feedback can play a strong role in the quenching process.  
 
 \subsubsection{Mergers}
+Mergers are a well-known driver of quenching \citep{Peng2010}, and are perhaps the dominant mechanism in particular for central galaxies \citet{Smethurst2017} whose dense environments give an increased probability of galaxy-galaxy interaction. Simulations demonstrate that these events cause a mechanical disruption of the merging disks \citep{Pontzen2017} which triggers powerful, brief starbursts \citep{Barnes1996,Hopkins2006}, yielding star formation rates up to twice that observed for their isolated counterparts \citep{Mihos1994}, resulting in a quench after the gas required for star formation is rapidly depleted. Major (1:1 mass ratio) events have been shown to strongly disrupt the morphology of the interacting galaxies. It is hypothesized modern-day ellipticals were primarily formed from the mergers of disk galaxies \citep{Toomre1977,Schweizer1982,Schweizer1990}, which has been supported both by simulations \citep{Mihos1996,Pontzen2017} and observations \citep{Schweizer1982,Wright1990,Stanford1991}, whereby recently-quenched galaxies were shown to follow $r^{1/4}$ light profiles. 
+
 
 \section{Sample Selection}
 \label{sec:reddisksample}
-info to include:
-cross match with ultravista for rest-frame colors, volume limit, morphological cuts (pfeatures, pclumpy, pedgeon)
+
+The parent sample of galaxies in this paper is drawn from the Galaxy Zoo: Hubble (GZH) catalog \citep{Willett2016}, which provides morphological classifications for galaxies sourced from the HST Legacy Surveys. From the main catalog we select galaxies with imaging from the Cosmic Evolution Survey (COSMOS, \citet{Scoville2007}) in the redshift range $0<z<1$. From this, we apply a magnitude cut of $M_{r^{+}}<-20.5$ to create a volume-limited sample. Rest frame NUV-r and r-J colors are taken from the UltraVISTA catalog \citep{McCracken2012,Ilbert2013}.
+
+A sample of non-clumpy disk galaxies was identified using the morphological classifications provided by GZH. The sample includes subjects which meet the following criteria: $\rm f_{features} > 0.30$ and $\rm f_{clumpy,no} > 0.30$, where $\rm f$ is the debiased vote fraction. It was required that at least 20 votes were given for each question ($\rm N_{smooth~or~features} \ge 20$ and $\rm N_{clumpy} \ge 20$) to reduce uncertainty in the vote fractions.
 
 \section{Galaxy Classification: Identifying the Passive Population}
 \label{sec:colorcolor}
@@ -127,28 +130,107 @@ Figure~\ref{fig:xi_v_sb} shows completeness as a function of redshift and surfac
 
 \begin{figure}
 \centering
-\includegraphics[width=.75\textwidth,trim={0cm 1cm 1cm 1cm},clip]{figures/completenessmoneyplot.pdf}
+\includegraphics[width=.5\textwidth,trim={0cm 1cm 1cm 1cm},clip]{figures/completenessmoneyplot.pdf}
 \caption{Completeness $\xi$ as a function of redshift moneyplot}
 \label{fig:notlinear}
 \end{figure}
 
+\section{Results}
+\label{sec:results}
+In this section we present our results of the evolution of disc galaxies from $z=1$ to $z=0.2$ in a sample of 27,355 $COSMOS$ galaxies morphologically classified in GZH. We will show x, y, and z and talk about it. 
 
-\section{Simple model}
+\subsection{The evolving passive disk fractions: $f_{R|D}$ and $f_{D|R}$} 
 
-\begin{flalign}
-&\frac{dN_{BD}}{dt}\Big\rvert_{m} = \Big(-r_{BD_{m} \rightarrow RD_{m}} - r_{BD_{m} \rightarrow RE_{2m}}\Big)N_{BD_{m}} -\alpha(m) sSFR(t) \nonumber  \\
-&\frac{dN_{RD}}{dt}\Big\rvert_{m} = + r_{BD_{m} \rightarrow RD_{m}}N_{BD_{m}} - r_{RD_{m} \rightarrow RE_{2m}}N_{RD_{m}} \nonumber \\
-&\frac{dN_{RE}}{dt}\Big\rvert_{2m} = + r_{BD_{m} \rightarrow RE_{2m}}N_{BD_{m}} + r_{RD_{m} \rightarrow RE_{2m}}N_{RD_{m}} + \kappa_m N_{RE_{2m}} \nonumber  \\  
-\label{eqn:rateeqs}
-\end{flalign}
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth,trim={0cm 0cm 2cm 1cm},clip]{figures/fractions_modeled.pdf}
+\caption{\textbf{Left:} Passive disk fraction ($\rm N_{red~disks}/(N_{red~disks}+N_{blue~disks})$) vs redshift in four mass bins. \textbf{Right:} Fraction of disks on the red sequence ($\rm N_{red~disks}/(N_{red~disks}+N_{red~ellipticals})$) vs redshift in four mass bins. The solid lines represent the evolution of the fractions computed by the toy-model described in Section~\ref{sec:results} using rate parameters which yielded the lowest $\chi^2$.}
+\label{fig:f_results}
+\end{figure*}
 
-\begin{flalign}
-&\alpha(m) = \frac{d~\rm log~\phi}{d~\textrm{log}~m} = (1+\alpha_s) - \frac{m}{M^{*}}\nonumber  \\
-&sSFR(m,t) = 2.5\Big(\frac{t}{3.5~Gyr}\Big)^{-2.2}  \nonumber  \\  
-\label{eqn:as}
-\end{flalign}
+\begin{figure}
+\centering
+\includegraphics[width=3.5in]{figures/cartoon.pdf}
+\caption{Cartoon representing three evolutionary pathways represented in the toy-model described in Section~\ref{sec:results}. Path A represents an active star-forming galaxy which quenches without destroying the disk, becoming a red disk; the fraction of blue galaxies to follow this track is represented by $r_{BD \rightarrow RD}$ in the model. Path B represents a red disk morphologically transition to red ellipitcal; the fraction of red galaxies to follow this track is $r_{RD \rightarrow RE}$. Path C represents a blue disks simultaniously quenching and morphologically transforming to become a red elliptical; the fraction of blue galaxies to follow this track is $r_{BD \rightarrow RE}$. (The fourth driver of the relative numbers of different morphological types is $\kappa_{RE}$, the net merger rate of ellipticals in a given mass bin, and is not represented in the cartoon.) }
+\label{fig:cartoon}
+\end{figure}
+The change in the relative number densities of active/passive disk/elliptical galaxies traces the dominant evolutionary pathways they follow at different mass thresholds. In Figure~\ref{fig:f_results} we measure these using the fractions defined in the previous section, $f_{R|D}$ (left panel) and $f_{D|R}$ (right panel) for four mass bins. We observe significantly different trends in $f_{R|D}$ for the two highest mass bins ($log(M/M_{\odot})>10.7$): for higher-mass galaxies, the fraction of red disks vs. all disks, within error, is either relatively flat or exhibits a small decrease, while the lower-mass galaxies have trends which increase sharply from $z=1$ to $z=0.3$. Similarly for the fraction of red disks on the red sequence: the highest mass bin $log(M/M_{\odot})>11.0$ decreases in $f_{D|R}$, while the lowest-mass bin increases sharply from $f_{D|R}\sim0.05$ to $\sim 0.2$.  
 
-using the Schechter function  $\phi(m) = \phi^*(m/M^*)^{1+\alpha_s}e^{-m/M^*}$ using parameters measured by \citet{Peng2010}
+To gain a more intuitive understanding of how the trends of these fractions depend on the different possible evolutionary pathways and their transition rates, it is helpful to rewrite them in a reduced form: $f_{R|D} = ({1+\frac{N_{BD}}{N_{RD}}})^{-1}$ ; $f_{D|R} = ({1+\frac{N_{RE}}{N_{RD}}})^{-1}$. Using the former as an example: at zeroth order, it can be seen that if the number of red disks increases at a higher rate than an increase in blue disks in some time interval, the overall fraction $f_{R|D}$ would also increase. For a single mass bin, this scenario would be consistent with a model in which blue galaxies are quenching faster than they are entering the mass bin via star formation. A strong decrease in $f_{R|D}$ would, in constrast, indicate a higher rate of red disks exiting the mass bin than the blue disks; the strength of the decrease would depend on the relative frequencies of blue galaxies quenching to form new red disks and red disks merging to form red ellipticals. The precise relative values of these rates cannot be deduced by a simple by-eye analysis of the fraction, however.
+
+We therefore implement a simple toy model to track the change in $f_{R|D}$ and $f_{D|R}$, given a range of parameters representing the quenching and morphological transformation rates for galaxies at fixed stellar mass. We begin by considering the rate of change in the number of blue disks ($dN_{BD}/dt$), red disks ($dN_{RD}/dt$), and red ellipticals ($dN_{RE}/dt$). In a given mass bin, the change in numbers for each population will depend on several parameters, illustrated visually in Figure~\ref{fig:cartoon}.
+
+\subsubsection{Blue Disks}
+First, galaxies in a blue bin may transition into a red disk bin via a quenching process that does not destroy its disk; we define this rate as $r_{BD \rightarrow RD}$, representing the fraction of blue galaxies to transition to red disks per Gyr (path A in Figure~\ref{fig:cartoon}). Blue galaxies may also exit a bin via a quenching process which \emph{does} destroy the disk; this fraction per Gyr we define as $r_{BD \rightarrow RE}$ (path C in Figure~\ref{fig:cartoon}).
+
+The number of galaxies in a blue disk bin will also change due to star formation, which brings active galaxies from a lower mass bin into the current mass bin. To account for this term we use the formalism outlined by \citet{Peng2010}, in which this rate of change is given by $(\alpha + \beta)sSFR$. Here $\alpha = d\phi_{blue}/dm$ is the derivative of the mass function for blue galaxies, which equates to $\alpha = (1+\alpha_s) - m/M^*$ for a mass function described by the Schechter (1976) function. We use best-fit parameters for blue galaxies measured by Johnpaperetal, which give $\alpha_s = -1.4$ and $M^* = 10.28 ~(log(M/M_{\odot}))$. Following the method of \citet{Peng2010}, we let $\beta=0$, both for simplicity, and because their conclusions found not to be strongly dependent on $\beta$. Last, the specific star-formation rate is given by $sSFR(t) = 2.5(\frac{t}{3.5 Gyr})^{-2.2}Gyr^{-1}$ \citep{Peng2010}.
+
+Accounting for all sources and sinks of blue disks entering or exiting a bin of given mass, the rate of change of blue disks can be written fully as:
+
+\begin{equation}
+\frac{dN_{BD}}{dt}\Big\rvert_{m} = \Big(-r_{BD \rightarrow RD} - r_{BD\rightarrow RE} -\alpha(m) sSFR(t) \Big)N_{BD}
+\label{eqn:BD}
+\end{equation}
+
+\subsubsection{Red Disks}
+Galaxies exiting a blue bin as they quenched without disrupting their disks enter the pool of red disks, increasing $N_{RD}$ for a given mass bin. Red disks also may undergo a morphological transformation, depleting the pool of red disks as they enter the red elliptical bin (path B in Figure~\ref{fig:cartoon}). The fraction of galaxies to undergo this pathway per Gyr is denoted as $r_{RD->RE}$. Combining these factors gives the expression: 
+
+\begin{equation}
+\frac{dN_{RD}}{dt}\Big\rvert_{m} = + r_{BD \rightarrow RD}N_{BD} - r_{RD \rightarrow RE}N_{RD}
+\label{eqn:RD}
+\end{equation}
+
+\subsubsection{Red Ellipticals}
+In this simple model, it is assumed that red, passive ellipticals are the final state in a typical galaxy's evolution. Therefore $N_{RE}$ will always be increasing from the transformation from blue disks and red disks to red ellipticals ($r_{BD \rightarrow RE}$, $r_{RD \rightarrow RE}$). However, the number of red ellipticals \emph{in a single mass bin} may still decrease due to ellipticals at the given mass merging to enter a bin of red ellipticals at a higher mass. Similarly, their number can increase as ellipticals from a lower mass bin merge to enter the current mass bin. A complete, semi-analytic model would consider this full range of possibilities and couple the resulting equations appropriately amongst all mass bins. For the purposes of this simple model, we opted to represent the total, net rate of change of the number of red ellipticals as a single parameter, $\kappa_{RE}$, which we note may be positive or negative, depending on whether more ellipticals are entering or leaving the given mass bin. 
+
+\begin{equation}
+\frac{dN_{RE}}{dt}\Big\rvert_{m} = \kappa_{RE} N_{RE}  
+\label{eqn:RE}
+\end{equation}
+
+We exclude the contribution from blue ellipticals from the model because they represent only a small fraction of the total population (find references which quantify this.) We initialize our model using the observed relative numbers of blue disks, red disks, and red ellipticals measured at $z=1$, then use the model to compute their evolution to $z=0.3$ using a range of values for each of the four parameters in four mass bins. For $r_{BD \rightarrow RD}, r_{BD \rightarrow RE},$ and $r_{RD \rightarrow RE}$, we test 25 values between 0 and 1, and 25 values between -1 and 1 for $\kappa_{RE}$. We note that a complete model would explore time-varying rates, but for the purposes of simplicity in our toy-model we only experiment with static parameters. For each mass bin, the model was implemented for each permutation of the four rate parameters. The success of each run was evaluated using a $\chi^2$ metric; these results are shown for each mass bin in the corner-plot in Figure~\ref{fig:corner}. The bins are weighted by $1/\chi^2$, such that white regions represent the rate parameters that yield the lowest $\chi^2$, and black representing the largest.
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth,trim={0cm 0cm 2cm 1cm},clip]{figures/corner_plot.pdf}
+\caption{Results of the grid-search for the best-fit rate parameters $r_{BD \rightarrow RD}, r_{BD \rightarrow RE}, r_{RD \rightarrow RE}$, and $\kappa_{RE}$ for four mass bins. The units for all rate parameters is $\rm Gyr^{-1}$. 25 equally-spaced values were tested between (0,1) for each parameter, with the exception of $\kappa_{RE}$ which was tested for 25 values between (-1,1); these are represented by the 25 bins on each axis. Each bin is weighted by $1/\chi^2$, such that white regions correspond to parameters which produced the lowest $\chi^2$, and black representing the highest. There is a strong result in the dependence of $r_{BD \rightarrow RD}$ with mass, such that the fraction of blue disks which transition to red disks (ie, quench without disrupting the disk), increases for more massive galaxies. The other parameters are less constrained by this model; therefore a more complex semi-analytic model will be necessary for obtaining the precise values of these rates, and is the subject of future work.}
+\label{fig:corner}
+\end{figure*} 
+
+We find a strong mass dependence on the fraction of blue galaxies to quench to red disks ($r_{BD \rightarrow RD}$), or Path A in Figure~\ref{fig:cartoon}. Our observations of $f_{R|D}$ and $f_{D|R}$ are most closely reproduced when $r_{BD \rightarrow RD}$ = [0.05, 0.07, 0.1, 0.2] $\rm Gyr^{-1}$ for masses $\rm log(M/M_{\odot})$ = [10.25,10.55,10.85,11.0]. [Note: need to measure peaks explicitely, current values are by-eye. Also calculate 1-sig errors.] These values for $r_{BD \rightarrow RD}$ correspond to the peaks of the 1-D histograms shown in Figure~\ref{fig:corner}. This increase of $r_{BD \rightarrow RD}$ with mass could suggest either: 1) more massive galaxies are more likely to undergo quenching processes which do not destroy their disks, or 2) less massive galaxies simply quench less frequently overall, via any pathway. 
+
+
+ Analysis of the next parameter in the low mass bin, $r_{BD\rightarrow RE}$, suggests that the former is more likely, given the peak of $r_{BD \rightarrow RE}$ at $>0.9 ~\rm Gyr^{-1}$. The high rate of low-mass blue disks quenching to red ellipticals is evidence that they do not quench any less frequently than high mass galaxies, and the increase of $r_{BD \rightarrow RD}$ with mass is indeed consistent with quenching processes less likely to destroy the disk of massive galaxies. However, this result is not nearly as constrained, given the broad distribution of likelihoods for this parameter. $r_{BD \rightarrow RE}$ is even less constrained for all higher masses. The degeneracies evident in this rate and $r_{RD \rightarrow RE}$ make it clear that our model is not sufficient to constrain the relative fequencies of the processes involved in quenching and morphological transformations; a more sophisticated model with the adjustments we have described thus far would be necessary to paint the full picture. 
+
+
+
+\section{Discussion}
+\label{sec:Discussion}
+
+We have explored the evolution of the passive disk population since $z=1$ by quantifying their abundances in terms of the fraction of disk galaxies that are red $f_{R|D}$ and the fraction of the red sequence occupied by disks $f_{D|R}$. For both fractions, we observed dependencies on both mass and redshift; this is a strong indication that passive disks play an important role in understanding the processes involved in the quenching and morphological transformation of galaxies. We identified three pathways to describe the evolution of a star-forming disk: $r_{BD \rightarrow RD}$ (the rate of blue disks quenching to red disks), $r_{BD \rightarrow RE}$ (the rate of blue disks quenching and transforming directly to red ellipticals), and $r_{RD \rightarrow RE}$ (the rate of red disks transforming to red ellipticals), and we argue that the relative frequencies of these rates drive the trends in $f_{R|D}$ and $f_{D|R}$. To begin quantifying the occurances of each of the pathways, we developed a toy model to reproduce $f_{R|D}$ and $f_{D|R}$ given some set of rates. Our model was able to constrain $r_{BD \rightarrow RD}$ to a reasonable degree of certainty, but the rest would require a more sophisticated model to deduce.
+
+An analysis of $r_{BD \rightarrow RD}$ provides an estimate for the fraction of galaxies to go through a passive disk phase. For the most massive galaxies, we find $r_{BD \rightarrow RD}$ = 0.20 $\pm .1~Gyr^{-1}$, indicating that 20\% of massive galaxies become red disks at some point in their lifetime. Whether these 20\% tend to stay red disks or tend to evolve to ellipticals is unclear without a more solid constraint on $r_{RD \rightarrow RE}$. Using the same logic for the other three mass bins, we can find that [5\%, 7\%, 10\%] of galaxies with masses [10.25,10.55,10.85] become red disks in their lifetimes. These estimates are in agreement with \citet{Bundy2010} (hereafter B10) who estimate an upper limit of 60\% of massive galaxies to experience a red disk phase. Their estimation comes from a different approach to ours, via an analysis of the mass function of galaxies with different morphologies and the fractional contribution of disks on the red sequence $f_{D|R}$.  
+
+Our estimation of the significance of the passive disk population is in agreement with B10 for the most massive galaxies, as is the downward trend in $f_{D|R}$ with redshift from $z=1$ to $z=0.3$. As suggested previously, a downward trend of $f_{D|R}$ represents either a depletion of the total pool of red disks (via a transformation to elliptical), but could also be an indication of an increase in the pool of red ellipticals (which could result from blue or red disks transforming morphology). In contrast, an upward trend is only possible via a pile-up of red disks, which is what we observe for the lower mass bins. Thus far our results are then consistent with a physical scenerio in which 1) more massive galaxies are more likely to become passive disks (given by the increase of $r_{BD \rightarrow RD}$ with increasing mass), and 2) less massive galaxies who enter a red disk phase are more likely than massive galaxies to stay in that phase, rather than transform to elliptical (given by the increase of $f_{D|R}$ from $z=1$ to $z=0.3$ for low mass bins).
+
+Our first point is in agreement with literature which explores the unimodality of disk galaxies across a CMD \citep{Schawinski2014,Powell2017}. The smooth transition from the blue cloud to the red sequence in the distribution of low to medium mass disk galaxies is evidence for slow quenching timescales. For higher mass disk galaxies, the unimodality is broken, suggesting a more rapid quenching. This could be due to a higher merger rate for more massive galaxies, or as suggested by \citet{Schawinski2014}, evidence for a mass-quenching effect, in which the galaxy's halo reaches a critical mass whereby the gas is inhibited from cooling sufficiently to continue star-formation \citep{Kormendy2004,Dekel2006,Peng2010}. This result is also consistent with B10, who observe the strongest decrease in $f_{D|R}$ from $z=1$ to $z=0.3$ for their most massive galaxies.
+
+Our second point is in disagreement with B10, who observe downward trends in $f_{D|R}$ in low mass galaxies. At the lowest redshift bin ($z\sim0.3$), we measure similar absolute fractions of disks occupying the red sequence for all masses. However, B10 find their contribution to increase at higher lookback time to $z=1$, while we find a decreasing contribution. The fact that our results agree for the highest mass at all redshifts, but only at the lowest redshift for lower masses, suggests the differences may be attributed in biases in morphological classification. B10 indentifies early and late-type disk galaxies using ZEST \citep{Scarlata2007} morphologies, which they acknowledge are biased towards disk classification for faint apparent magnitudes, which tend to be attributed to the lowest mass, highest redshift objects. This bias could influence their observed increase in red sequence disks toward $z=1$ for low masses. On the opposite end, GZ classifications tend to be biased towards elliptical morphologies at fainter magnitudes. We attempted to quantify and correct for this effect as described in Section~\ref{ssec:ferengi}, but if our correction was under-estimated, that may have driven the decreasing abundance of disk galaxies observed at increasing redshift for low masses. However, it has been shown in the local Universe that red disk galaxies tend to be more massive, as in \citet{Masters2011}. If this is true at all epochs, we would not expect such a significant contribution of red disks for low mass galaxies as found in B10. 
+\section{Conclusions}
+\label{sec:conclusions}
+
+We have investigeted the influence of the passive disk population by measuring the relative abundances of blue disks, red disks, and red ellipticals since $z=1$ using morphological classifications from Galaxy Zoo: Hubble and rest-frame colors from UltraVISTA. Using data from artificially-redshifted \ferengi2 images to quantify the known redshift bias in the GZ classifications, we implemented a correction to the incompleteness in the number of disks detected as a function of redshift. The relative numbers were measured in terms of the fraction of disk galaxies that are red $f_{R|D}$ and the fraction of disk galaxies on the red sequence $f_{D|R}$. A simple toy-model was developed to simulate the evolution of these fractions as a function of the rates of three dominant evolutionary pathways: $r_{BD \rightarrow RD}$, the rate of blue disks quenching to red disks, $r_{BD \rightarrow RE}$,the rate of blue disks quenching and transforming directly to red ellipticals, and $r_{RD \rightarrow RE}$,the rate of red disks transforming to red ellipticals. Our main conclusions are as follows:
+
+\begin{itemize}
+
+\item{$f_{R|D}$ and $f_{D|R}$ decrease from $z=1$ to $z=0.3$ for massive galaxies, and increase for the least massive galaxies.}
+
+\item{We estimate as high as 20\% (+-error) of massive ($log(M/M_{\odot})>11$) galaxies experience a passive disk phase. This fraction decreases with mass, down to 5+- \% for galaxies $log(M/M_{\odot})<10.4$.}
+
+\item{Low mass galaxies which experience a passive disk phase are more likely than massive galaxies to remain disks, while massive galaxies are more likely to continue thier evolution by transforming to passive ellipticals. To quantify and validate this result would require a more sophisticated model than the simple approached used in this project.}
+
+
+\end{itemize}
 
 
 
