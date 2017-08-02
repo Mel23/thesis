@@ -1,10 +1,29 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % conclusion.tex:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Summary \& Future Work}
+\chapter{Looking Forward}
 \label{summary_chapter}
 
+Morphology has been, and continues to be, one of the strongest tools available for unravelling the fundamental aspects of the evolution of galaxies. Understanding the myriad secular and environmental processes which give rise to the multitude of morphological types observed contributes to our growing knowledge of the past, present, and future of our Universe.
 
+Using morphology as such a tool, however, is not without its own challenges. Most of these stem from the difficulty in obtaining accurate morphological classifications on a sufficiently large scale. For example, while the SDSS has imaged the largest number of galaxies in a single survey to date ($N \sim 900,000$), only a small fraction of these are nearby enough, large enough, and bright enough to accurately classify their morphologies. Figure~\ref{fig:simmonsgal} shows side-by-side images of a galaxy at $z=0.1$ imaged by SDSS (left) and HST (right). The ground-based image at 0.4''/pixel is not resolved enough to even make out the strong bar or spiral arms, which are very easy to identify in the HST image at 0.04''/pixel.  
+ 
+\begin{figure}
+\centering
+\includegraphics[width=.75\textwidth]{figures/simmons_galaxy.jpg}
+\caption{Resolution of the instrument has a strong impact on the physical appearance of a galaxy, and large differences could change a morphological classification drastically, even for nearby galaxies. Shown is a spiral galaxy at $z=0.1$, imaged by SDSS at $\sim$.4''/pixel (left), and HST at $\sim$.04''/pixel (right) (HST Program ID 14606, PI: Simmons). The strong bar and distinct spiral arms in the HST imaging are mostly lost in the low-resolution ground-based image. }
+\label{fig:simmonsgal}
+\end{figure}
 
+The solution to this problem has typically been to limit one's sample to only include the most bright galaxies, via a magnitude or volume-limit, to ensure all morphologies in the study are accurate. However a statistical price is paid, particularly in population studies which seek to identify dominant trends in large samples of galaxies. Such studies tend to require extensive binning of the parent sample to remove inter-dependencies in the variables, which as a consequence increases the statistical error in the results as the number of subjects per bin decreases. This type of limitation amplifies as one extends to higher redshift; even the high-resolution capability of HST is insufficient in capturing consistent detailed morphological substructures for galaxies beyond $z\sim0.5$, except for the very largest and brightest objects.
 
+The future of the field is incredibly promising, as technological advances in instrumentation continue to improve on these limitations. Noteworthy examples include the \href{http://www.gmto.org/}{Giant Magellan Telescope (GMT)}, \href{http://www.eso.org/public/teles-instr/elt/}{Extremely Large Telescope (ELT)}, and the \href{http://www.tmt.org/}{Thirty Meter Telescope (TMT)} which will provide images 10-16 times sharper than HST, due to their improved light-collecting areas via large mirrors and implementation of sophisticated adaptive optics technology. 
+
+Perhaps the most notable upcoming advances in this field involve the \href{https://www.lsst.org/}{Large Synoptic Space Telescope (LSST)} and the \href{http://sci.esa.int/euclid/}{Euclid} mission, which will be imaging galaxies on scales previously unattainable. Producing data on the order of terabytes per night, the surveys are ultimately expected to produce detailed images of more than a billion galaxies. While samples on this scale may certainly solve the afforementioned statistical challenges of morphological population studies, this inflow of data presents an entirely new challenge: how can we possibly obtain accurate morphologies on such a large scale in a reasonable timeframe? On these scales, even crowdsourced visual inspection via Galaxy Zoo is nowhere near fast enough. 
+
+The next stage of Galaxy Zoo is tackling this issue by combining human and machine effort, beginning with an innovative system dubbed Galaxy Zoo Express (GZX) (Beck et al. 2017, submitted). GZX improves on the speed and accuracy of human classifications in two ways. First, it maximizes the information that can be obtained from human effort via the algorithm SWAP (Space Warps Analysis Pipeline) \citep{Marshall2016}. SWAP continuously tracks and updates the probability that a galaxy has a given feature, given the history of the volunteers' classifications and their performance classifying known galaxies as part of a training set. Using this technique, human effort is greatly reduced as most galaxies would not require 40 volunteers all classifying each galaxy, which was the retirement threshold in all previous GZ projects. Second, GZX incorporates a machine-learning algorithm which works together with the human classifications to increase the classification time even further. With all of these improvements combined, Beck et al. 2017 showed that GZX could classify 70\% of the GZ2 catalog in \emph{32 days}, a feat that took a full year using the current approach. 
+
+This thesis began with the observation that all data available for studying the evolution of the Universe is contained in a single snapshot of the present cosmos. Methods of imaging galaxies in this snapshot are continuously advancing, as are methods for fast and efficient morphological classification. These advancements undoubtedly point to a promising new era of discovery, which should unveil a whole new wealth of information to further our understanding of the life and fate of galaxies in the Universe. 
+
+ 
 
